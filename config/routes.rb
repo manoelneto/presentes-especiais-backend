@@ -14,6 +14,18 @@ Rails.application.routes.draw do
 
   get 'users' => 'users#index'
 
+  namespace :spree do
+    namespace :api do
+      namespace :v1 do
+        resources :users, only: [:create], format: 'json' do
+          collection do
+            post 'sign_in'
+          end
+        end
+      end
+    end
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

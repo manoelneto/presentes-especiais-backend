@@ -41,8 +41,19 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
 
+  # Factory girl
+  gem "factory_girl_rails", "~> 4.0"
+
+  # test unit
+  gem 'rspec-rails', '~> 3.0'
+
+  gem 'guard-rspec'
+  gem 'guard-annotate'
+  gem 'guard-rails'
+  gem 'database_cleaner',     '1.4.1'
+  gem 'ffaker'
+end
 
 gem 'spree', '3.0.3'
 gem 'spree_gateway', github: 'spree/spree_gateway', branch: '3-0-stable'
