@@ -2,6 +2,7 @@ class Spree::Api::V1::UsersController < Spree::Api::V1::BaseController
 
   def sign_in
     @user = Spree.user_class.where(email: user_params[:email]).first
+
     if @user
       if @user.valid_password?(user_params[:password])
         @user.generate_spree_api_key! unless @user.spree_api_key

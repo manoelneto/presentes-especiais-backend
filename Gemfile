@@ -53,8 +53,11 @@ group :development, :test do
   gem 'guard-rails'
   gem 'database_cleaner',     '1.4.1'
   gem 'ffaker'
+  gem 'better_errors',        '2.1.1'
 end
 
 gem 'spree', '3.0.3'
 gem 'spree_gateway', github: 'spree/spree_gateway', branch: '3-0-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '3-0-stable'
+
+gem 'rack-cors', :require => 'rack/cors'
