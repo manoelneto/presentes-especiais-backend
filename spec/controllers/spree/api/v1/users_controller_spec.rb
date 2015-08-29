@@ -27,6 +27,12 @@ RSpec.describe Spree::Api::V1::UsersController, type: :controller do
     {
       email: Faker::Internet::email,
       password: 'somepassword',
+      identities_attributes: [
+        {
+          uid: 'uid',
+          provider: 'provider',
+        }
+      ]
     }
   }
 
@@ -85,6 +91,12 @@ RSpec.describe Spree::Api::V1::UsersController, type: :controller do
         }.to change(Spree.user_class, :count).by(1)
       end
 
+      it "creates a new Identity class" do
+        expect {
+          post :create, {:user => valid_attributes}
+        }.to change(Identity, :count).by(1)
+      end
+
       it "assigns a newly created user as @user" do
         post :create, {:user => valid_attributes}
         expect(assigns(:user)).to be_a(Spree.user_class)
@@ -120,6 +132,38 @@ RSpec.describe Spree::Api::V1::UsersController, type: :controller do
       it "is unprocessable" do
         post :create, {user: invalid_attributes}
         expect(response).to be_unprocessable
+      end
+    end
+  end
+
+  describe "GET #has_email" do
+    before do
+      @user = create(:spree_user, valid_attributes)
+    end
+
+    context "with valid params" do
+
+      it "succeds" do
+        get :has_email, {email: valid_attributes[:email]}
+        expect(response).to be_success
+      end
+
+      it "returns true" do
+        get :has_email, {email: valid_attributes[:email]}
+        expect(response.body).to eq("true")
+      end
+    end
+
+    context "with invalid params" do
+
+      it "succeds" do
+        get :has_email, {email: invalid_attributes[:email]}
+        expect(response).to be_success
+      end
+
+      it "returns false" do
+        get :has_email, {email: invalid_attributes[:email]}
+        expect(response.body).to eq("false")
       end
     end
   end

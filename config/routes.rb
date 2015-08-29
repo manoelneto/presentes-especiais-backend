@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+  devise_for :users, :class_name => 'Spree::User', :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   get 'users' => 'users#index'
 
   namespace :spree do
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
         resources :users, only: [:create], format: 'json' do
           collection do
             post 'sign_in'
+            get 'has_email'
           end
         end
       end

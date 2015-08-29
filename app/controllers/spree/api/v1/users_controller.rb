@@ -8,10 +8,10 @@ class Spree::Api::V1::UsersController < Spree::Api::V1::BaseController
         @user.generate_spree_api_key! unless @user.spree_api_key
         render :show
       else
-        render text: "Invalid credentials", status: :unprocessable_entity
+        render json: {message: "Invalid credentials"}, status: :unprocessable_entity
       end
     else
-      render text: "Invalid credentials", status: :unprocessable_entity
+      render json: {message: "Invalid credentials"}, status: :unprocessable_entity
     end
   end
 
@@ -26,10 +26,23 @@ class Spree::Api::V1::UsersController < Spree::Api::V1::BaseController
     end
   end
 
+  def has_email
+    render json: Spree.user_class.where(email: params[:email]).any?
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(
+        :email,
+        :password,
+        :identities_attributes => [
+          :id,
+          :uid,
+          :provider,
+          :name
+        ]
+      )
     end
 
 end

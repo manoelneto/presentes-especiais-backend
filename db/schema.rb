@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805235341) do
+ActiveRecord::Schema.define(version: 20150829023623) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20150805235341) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "spree_user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "identities", ["spree_user_id"], name: "index_identities_on_spree_user_id"
 
   create_table "spree_addresses", force: :cascade do |t|
     t.string   "firstname"
@@ -938,6 +949,8 @@ ActiveRecord::Schema.define(version: 20150805235341) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "spree_users", ["deleted_at"], name: "index_spree_users_on_deleted_at"
