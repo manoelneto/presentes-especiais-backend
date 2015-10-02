@@ -1,0 +1,8 @@
+app/models/identity.rb c3c93092b9ff73c1652415a2b9455be4116f37c8
+app/helpers/application_helper.rb eef3d3adce96afe8b14c19b6135323f47543d979
+app/models/spree/user_decorator.rb 2553060f40fe3fda06e0d7b0761cb1a62efdd82b
+app/controllers/users_controller.rb 6e065ec67c10fa32d08295fa6417c6e82bd8054f
+app/controllers/application_controller.rb 7afa8bd02d2c49fd8df3c6e372b8520c9f916e8e
+app/controllers/spree/api/v1/base_controller.rb f0ca6cf0b86130084cf76efe5db55b422f1ff6e4
+app/controllers/spree/api/v1/users_controller.rb 6aa8261933f16dc6412f619a9f926a4370587ee3
+app/controllers/users/omniauth_callbacks_controller.rb f698d7b898e9ccdb5f6a56c7b1c80a1111b624e1

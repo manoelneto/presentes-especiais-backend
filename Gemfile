@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'figaro'
 
+gem 'yard'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -33,6 +35,20 @@ gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :development do
+  # deploy
+  # gem 'capistrano', '~> 3.1.0'
+
+  # # rails specific capistrano funcitons
+  # gem 'capistrano-rails', '~> 1.1.0'
+
+  # # integrate bundler with capistrano
+  # gem 'capistrano-bundler'
+
+  # # if you are using RBENV
+  # gem 'capistrano-rbenv', "~> 2.0"
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

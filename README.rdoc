@@ -1,28 +1,135 @@
-== README
+== PEB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Presentes Especiais Backend, aka PEB, is a project to host api endpoints for PEM usage
 
-Things you may want to cover:
+== Getting started
 
-* Ruby version
+=== Configuring enviroment
 
-* System dependencies
+Wee need to wrap your gens to not use system gens and override gens that you don`t want to. For this purpose, you need to install rvm (easyier) or rbenv.
 
-* Configuration
+==== Installing rvm
 
-* Database creation
+Install rvm
 
-* Database initialization
+  $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  $ \curl -sSL https://get.rvm.io | bash -s stable
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Project url: https://rvm.io/
+
+==== Installing rbenv
+
+1. Check out rbenv into `~/.rbenv`.
+
+    $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+
+2. Add `~/.rbenv/bin` to your `$PATH` for access to the `rbenv`
+   command-line utility.
+
+    $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+
+    **Ubuntu Desktop note**: Modify your `~/.bashrc` instead of `~/.bash_profile`.
+
+    **Zsh note**: Modify your `~/.zshrc` file instead of `~/.bash_profile`.
+
+3. Add `rbenv init` to your shell to enable shims and autocompletion.
+
+    $ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
+    _Same as in previous step, use `~/.bashrc` on Ubuntu, or `~/.zshrc` for Zsh._
+
+4. Restart your shell so that PATH changes take effect. (Opening a new
+   terminal tab will usually do it.) Now check if rbenv was set up:
+
+    $ type rbenv
+    #=> "rbenv is a function"
+
+5. _(Optional)_ Install [ruby-build][], which provides the
+   `rbenv install` command that simplifies the process of
+   [installing new Ruby versions](#installing-ruby-versions).
+
+Check all rubys installed
+
+  rbenv versions list
+
+Install ruby 2.2.0 if isn`t installed
+
+  rbenv install 2.2.0
+
+Instaling rbenv gemset plugins
+
+  See details at https://github.com/jf/rbenv-gemset
+
+Create this project gemset
+
+  rbenv gemset create 2.2.0 peb
+
+Project url: https://github.com/sstephenson/rbenv
+
+=== Downloading
+
+Download this project
+
+  $ git clone GIT_PROJECT_URL
+
+=== Installing
+
+Enter you project
+
+  $ cd PROJECT_PATH
+
+Install ruby dependences
+
+  $ bundle
+
+if using rbenv and resulting 'rbenv: bundle: command not found', you must install it and run bundle again
+
+  $ gem install bundler
+
+=== Database
+
+We need to create database and run all migrations on it.
+
+Creating database
+
+  $ rake db:create
+
+Runing all migrations
+
+  $ rake db:migrate
+
+If you need to drop database, you can execute
+
+  $ rake db:drop
+
+=== Runing
+
+Runing project
+
+  $ rails s
+
+Runing project with guard (prefferable)
+
+  $ guard
+
+Then you can see in the browser in
+
+  http://localhost:3000
+
+Guard is a project to listen changes in your code and executing it. A good example is live testing when you change anything.
+
+== Documentation
+
+To see others documentations features of this project, you can run this doc.
+
+=== Runing
+
+Runing doc
+
+  yard server --reload
+
+Then you can see in the browser in
+
+  http://localhost:8808
