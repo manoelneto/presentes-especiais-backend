@@ -1,0 +1,29 @@
+Local de definição: dentro da pasta
+
+  app/controllers
+
+Veja {file:docs/files/routes.rdoc Routes} antes
+
+Um controller sempre será extendido da classe ActionController::Base, deverá conter o nome do arquivo
+
+Ex:
+
+Arquivo de nome users_controller.rb
+
+  class UsersController < ActionController::Base
+    def index
+    end
+  end
+
+
+Se tiver alguma rota apontando para o controller 'users#index', vai entrar no index e a view relacionado ao controller#action será renderizado, neste caso, a view users/index.html, ou index.json (tem uma lista do que ele vai renderizar, se é o .html ou o .json, ele tenta procurar todos os arquivos dentro de users/ que tenha index no nome terminado com algum formater (nao sei se o nome é esse mesmo)).
+
+Mas se fizer a requisição terminando com .json ele vai tentar renderizar exclusivamente o .json, se terminar com .html, a mesma coisa.
+
+Eu posso escolher outra view pra renderizar, ex:
+
+  render :show
+
+Vai renderizar o users/show
+
+{file:docs/files/views.rdoc Saiba mais sobre os views}

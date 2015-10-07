@@ -2,9 +2,9 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
-  Top Level Namespace
+  File: assets
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!top-level-namespace.html";
+  framesUrl = "frames.html#!file.assets.html";
 </script>
 
 
@@ -31,10 +31,8 @@
     <div id="header">
       <div id="menu">
   
-    <a href="_index.html">Index</a> &raquo;
-    
-    
-    <span class="title">Top Level Namespace</span>
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: assets</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -63,46 +61,35 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Top Level Namespace
-  
-  
-  
-</h1>
+    <div id="content"><div id='filecontents'>
+<p>Local de definição: dentro da pasta</p>
 
-<dl class="box">
-  
-  
-    
-  
-    
-  
-  
-  
-</dl>
-<div class="clear"></div>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_app'>app</span><span class='op'>/</span><span class='id identifier rubyid_assets'>assets</span>
+</code></pre>
 
-<h2>Defined Under Namespace</h2>
-<p class="children">
-  
-    
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="ApplicationHelper.html" title="ApplicationHelper (module)">ApplicationHelper</a></span>
-    
-  
-    
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Identity.html" title="Identity (class)">Identity</a></span>, <span class='object_link'><a href="UsersController.html" title="UsersController (class)">UsersController</a></span>
-    
-  
-</p>
+<p>Aqui você coloca os arquivos javascripts, css, etc.</p>
 
+<p>Para chamar esses arquivos, existem alguns métodos</p>
 
+<p>ex:</p>
 
+<pre class="code ruby"><code class="ruby">{qualquerpasta dentro de assets que esteja configurada, neste caso, existem 3 padrões, stylesheets, javascript, images}
 
+# cria uma tag link, rel stylesheet linkando pra o arquivo app/assets/application.css
+&lt;%= stylesheet_link_tag &#39;application&#39;, media: &#39;all&#39; %&gt;
 
+# cria uma tag link, rel stylesheet linkando pra o arquivo app/assets/application.js
+&lt;%= javascript_include_tag &#39;application&#39; %&gt;</code></pre>
 
+<p>Perceba que os dois estão linkados para a mesma pasta (app/assets), mas
+isso acontece pelo fato de que o rails pega tudo o que tiver dentro da
+pasta assets/images assets/javascripts assets/stylesheets e trata como 1
+pasta só, a assets/ (essas pastas são configuraveis)</p>
 
-
-
-</div>
+<p>Então o link pra o application.js, vai renderizar o
+app/assets/javascripts/application.js, ja o application.css, renderiza o
+app/assets/stylesheets/application.css</p>
+</div></div>
 
     <div id="footer">
   Generated on Tue Oct  6 23:15:25 2015 by

@@ -62,38 +62,164 @@
     <iframe id="search_frame"></iframe>
 
     <div id="content"><div id='filecontents'>
-<h2 id="label-README">README</h2>
+<h2 id="label-PEB">PEB</h2>
 
-<p>This README would normally document whatever steps are necessary to get the
-application up and running.</p>
+<p>Presentes Especiais Backend, aka PEB, is a project to host api endpoints
+for PEM usage</p>
 
-<p>Things you may want to cover:</p>
-<ul><li>
-<p>Ruby version</p>
-</li><li>
-<p>System dependencies</p>
-</li><li>
-<p>Configuration</p>
-</li><li>
-<p>Database creation</p>
-</li><li>
-<p>Database initialization</p>
-</li><li>
-<p>How to run the test suite</p>
-</li><li>
-<p>Services (job queues, cache servers, search engines, etc.)</p>
-</li><li>
-<p>Deployment instructions</p>
-</li><li>
-<p>…</p>
-</li></ul>
+<h2 id="label-Getting+started">Getting started</h2>
 
-<p>Please feel free to use a different markup language if you do not plan to
-run <code>rake doc:app</code>.</p>
+<h3 id="label-Configuring+enviroment">Configuring enviroment</h3>
+
+<p>Wee need to wrap your gens to not use system gens and override gens that
+you don`t want to. For this purpose, you need to install rvm (easyier) or
+rbenv.</p>
+
+<h4 id="label-Installing+rvm">Installing rvm</h4>
+
+<p>Install rvm</p>
+
+<pre class="code ruby"><code class="ruby">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+
+$ \curl -sSL https://get.rvm.io | bash -s stable</code></pre>
+
+<p>Project url: <a href="https://rvm.io">rvm.io</a>/</p>
+
+<h4 id="label-Installing+rbenv">Installing rbenv</h4>
+<ol><li>
+<p>Check out rbenv into `~/.rbenv`.</p>
+
+<pre class="code ruby"><code class="ruby">$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv</code></pre>
+</li><li>
+<p>Add `~/.rbenv/bin` to your `$PATH` for access to the `rbenv` command-line
+utility.</p>
+
+<pre class="code ruby"><code class="ruby">$ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bash_profile
+
+**Ubuntu Desktop note**: Modify your `~/.bashrc` instead of `~/.bash_profile`.
+
+**Zsh note**: Modify your `~/.zshrc` file instead of `~/.bash_profile`.</code></pre>
+</li><li>
+<p>Add `rbenv init` to your shell to enable shims and autocompletion.</p>
+
+<pre class="code ruby"><code class="ruby">$ echo &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bash_profile
+
+_Same as in previous step, use `~/.bashrc` on Ubuntu, or `~/.zshrc` for Zsh._</code></pre>
+</li><li>
+<p>Restart your shell so that PATH changes take effect. (Opening a new
+terminal tab will usually do it.) Now check if rbenv was set up:</p>
+
+<pre class="code ruby"><code class="ruby">$ type rbenv
+#=&gt; &quot;rbenv is a function&quot;</code></pre>
+</li><li>
+<p>_(Optional)_ Install [ruby-build][], which provides the `rbenv install`
+command that simplifies the process of [installing new Ruby
+versions](#installing-ruby-versions).</p>
+</li></ol>
+
+<p>Check all rubys installed</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rbenv'>rbenv</span> <span class='id identifier rubyid_versions'>versions</span> <span class='id identifier rubyid_list'>list</span>
+</code></pre>
+
+<p>Install ruby 2.2.0 if isn`t installed</p>
+
+<pre class="code ruby"><code class="ruby">rbenv install 2.2.0</code></pre>
+
+<p>Instaling rbenv gemset plugins</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>See</span> <span class='id identifier rubyid_details'>details</span> <span class='id identifier rubyid_at'>at</span> <span class='label'>https:</span><span class='tstring'><span class='regexp_beg'>/</span><span class='regexp_end'>/github</span></span><span class='period'>.</span><span class='id identifier rubyid_com'>com</span><span class='op'>/</span><span class='id identifier rubyid_jf'>jf</span><span class='op'>/</span><span class='id identifier rubyid_rbenv'>rbenv</span><span class='op'>-</span><span class='id identifier rubyid_gemset'>gemset</span></code></pre>
+
+<p>Create this project gemset</p>
+
+<pre class="code ruby"><code class="ruby">rbenv gemset create 2.2.0 peb</code></pre>
+
+<p>Project url: <a
+href="https://github.com/sstephenson/rbenv">github.com/sstephenson/rbenv</a></p>
+
+<h3 id="label-Downloading">Downloading</h3>
+
+<p>Download this project</p>
+
+<pre class="code ruby"><code class="ruby">$ git clone GIT_PROJECT_URL</code></pre>
+
+<h3 id="label-Installing">Installing</h3>
+
+<p>Enter you project</p>
+
+<pre class="code ruby"><code class="ruby">$ cd PROJECT_PATH</code></pre>
+
+<p>Install ruby dependences</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle</code></pre>
+
+<p>if using rbenv and resulting &#39;rbenv: bundle: command not found&#39;,
+you must install it and run bundle again</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install bundler</code></pre>
+
+<h3 id="label-Database">Database</h3>
+
+<p>We need to create database and run all migrations on it.</p>
+
+<p>Creating database</p>
+
+<pre class="code ruby"><code class="ruby">$ rake db:create</code></pre>
+
+<p>Runing all migrations</p>
+
+<pre class="code ruby"><code class="ruby">$ rake db:migrate</code></pre>
+
+<p>If you need to drop database, you can execute</p>
+
+<pre class="code ruby"><code class="ruby">$ rake db:drop</code></pre>
+
+<h3 id="label-Runing">Runing</h3>
+
+<p>Runing project</p>
+
+<pre class="code ruby"><code class="ruby">$ rails s</code></pre>
+
+<p>Runing project with guard (prefferable)</p>
+
+<pre class="code ruby"><code class="ruby">$ guard</code></pre>
+
+<p>Then you can see in the browser in</p>
+
+<pre class="code ruby"><code class="ruby">http://localhost:3000</code></pre>
+
+<p>Guard is a project to listen changes in your code and executing it. A good
+example is live testing when you change anything.</p>
+
+<h2 id="label-Documentation">Documentation</h2>
+
+<p>To see others documentations features of this project, you can run this
+doc.</p>
+
+<h3 id="label-Runing">Runing</h3>
+
+<p>Runing doc</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yard'>yard</span> <span class='id identifier rubyid_server'>server</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_reload'>reload</span>
+</code></pre>
+
+<p>Then you can see in the browser in</p>
+
+<pre class="code ruby"><code class="ruby">http://localhost:8808</code></pre>
+
+<h2 id="label-Structure">Structure</h2>
+
+<h3 id="label-Routes">Routes</h3>
+
+<p><a href="file.routes.html" title="Link">Link</a></p>
+
+<h3 id="label-Controllers">Controllers</h3>
+
+<p><a href="file.controllers.html" title="Link">Link</a></p>
 </div></div>
 
     <div id="footer">
-  Generated on Thu Oct  1 21:45:28 2015 by
+  Generated on Tue Oct  6 23:15:25 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.0).
 </div>

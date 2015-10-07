@@ -2,9 +2,9 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
-  Top Level Namespace
+  File: routes
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!top-level-namespace.html";
+  framesUrl = "frames.html#!file.routes.html";
 </script>
 
 
@@ -31,10 +31,8 @@
     <div id="header">
       <div id="menu">
   
-    <a href="_index.html">Index</a> &raquo;
-    
-    
-    <span class="title">Top Level Namespace</span>
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: routes</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -63,46 +61,25 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Top Level Namespace
-  
-  
-  
-</h1>
+    <div id="content"><div id='filecontents'>
+<p>Rodas esta definidas no arquivo config/routes.rb</p>
 
-<dl class="box">
-  
-  
-    
-  
-    
-  
-  
-  
-</dl>
-<div class="clear"></div>
+<p>Esse é o primeiro arquivo que o rails olha quando chega alguma requisição.
+Ele mapeia as rotas para os controllers</p>
 
-<h2>Defined Under Namespace</h2>
-<p class="children">
-  
-    
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="ApplicationHelper.html" title="ApplicationHelper (module)">ApplicationHelper</a></span>
-    
-  
-    
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Identity.html" title="Identity (class)">Identity</a></span>, <span class='object_link'><a href="UsersController.html" title="UsersController (class)">UsersController</a></span>
-    
-  
-</p>
+<p>Ex:</p>
 
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>users</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>users#index</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
 
+<p>Toda requisição GET /users vai pra o controller users, action index</p>
 
+<p>A syntaxe padrão é o &#39;controller#action&#39;</p>
 
+<p>uma action é um metodo dentro do controller, então ele vai chamar o</p>
 
-
-
-
-
-</div>
+<pre class="code ruby"><code class="ruby">def index de UsersController</code></pre>
+</div></div>
 
     <div id="footer">
   Generated on Tue Oct  6 23:15:25 2015 by

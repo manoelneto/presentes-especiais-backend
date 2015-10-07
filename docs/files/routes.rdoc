@@ -1,0 +1,15 @@
+Rodas esta definidas no arquivo config/routes.rb
+
+Esse é o primeiro arquivo que o rails olha quando chega alguma requisição. Ele mapeia as rotas para os controllers
+
+Ex:
+
+  get 'users' => 'users#index'
+
+Toda requisição GET /users vai pra o controller users, action index
+
+A syntaxe padrão é o 'controller#action'
+
+uma action é um metodo dentro do controller, então ele vai chamar o
+
+  def index de UsersController

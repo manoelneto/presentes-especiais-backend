@@ -133,3 +133,11 @@ Runing doc
 Then you can see in the browser in
 
   http://localhost:8808
+
+== Structure
+
+=== Routes
+{file:docs/files/routes.rdoc Link}
+
+=== Controllers
+{file:docs/files/controllers.rdoc Link}

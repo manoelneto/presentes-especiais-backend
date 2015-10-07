@@ -1,0 +1,15 @@
+Local de definição: dentro da pasta
+
+  app/views
+
+Aqui você coloca os arquivo de acordo com os controllers, ex:
+
+  controller UsersController
+    actions index, show, edit
+
+  Os templates ficarão dentro da pasta users
+
+  users/index.html, users/index.json
+  users/show.html, users/show.json
+  users/edit.html
+

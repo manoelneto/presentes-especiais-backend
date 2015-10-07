@@ -1,0 +1,21 @@
+Local de definição: dentro da pasta
+
+  app/assets
+
+Aqui você coloca os arquivos javascripts, css, etc.
+
+Para chamar esses arquivos, existem alguns métodos
+
+ex:
+
+  {qualquerpasta dentro de assets que esteja configurada, neste caso, existem 3 padrões, stylesheets, javascript, images}
+
+  # cria uma tag link, rel stylesheet linkando pra o arquivo app/assets/application.css
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+
+  # cria uma tag link, rel stylesheet linkando pra o arquivo app/assets/application.js
+  <%= javascript_include_tag 'application' %>
+
+Perceba que os dois estão linkados para a mesma pasta (app/assets), mas isso acontece pelo fato de que o rails pega tudo o que tiver dentro da pasta assets/images assets/javascripts assets/stylesheets e trata como 1 pasta só, a assets/ (essas pastas são configuraveis)
+
+Então o link pra o application.js, vai renderizar o app/assets/javascripts/application.js, ja o application.css, renderiza o app/assets/stylesheets/application.css
