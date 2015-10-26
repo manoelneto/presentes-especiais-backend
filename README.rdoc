@@ -54,6 +54,10 @@ Check all rubys installed
 
   rbenv versions list
 
+For linux, install libffi-dev
+
+  apt get install libffi-dev
+
 Install ruby 2.2.0 if isn`t installed
 
   rbenv install 2.2.0
