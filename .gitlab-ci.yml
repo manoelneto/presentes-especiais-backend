@@ -1,2 +1,6 @@
+before_script:
+  - bundle install
+
 rspec:
-  script: "rspec"
+  script:
+    - bundle exec rspec
