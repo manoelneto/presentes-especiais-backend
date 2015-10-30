@@ -1,0 +1,153 @@
+= JSON apis
+
+== Overview
+
+Resumo da api na documentação do spree pode ser encontrado aqui https://guides.spreecommerce.com/api/summary.html
+
+== Token
+
+Alguns endpoints precisam de token para acessa-los
+
+You will need an authentication token to access the API. These keys can be generated on the user edit screen within the admin interface. To make a request to the API, pass a X-Spree-Token header along with the request:
+
+  $ curl --header "X-Spree-Token: YOUR_KEY_HERE" http://example.com/api/products.json
+
+Alternatively, you may also pass through the token as a parameter in the request if a header just won’t suit your purposes (i.e. JavaScript console debugging).
+
+  $ curl http://example.com/api/products.json?token=YOUR_KEY_HERE
+
+== Product Show
+
+GET /api/products
+
+Não precisa do token,
+
+
+  {
+    "id": 1,
+    "name": "Ruby on Rails Tote",
+    "description": "Qui ex et non sunt provident porro sit. Nesciunt doloremque quia sunt ut facilis eos impedit. Consequuntur beatae tenetur est dolorum nam. Facere maxime aut labore inventore minima.",
+    "price": null,
+    "display_price": "R$0.00",
+    "available_on": "2015-08-06T00:03:13.214Z",
+    "slug": "ruby-on-rails-tote",
+    "meta_description": null,
+    "meta_keywords": null,
+    "shipping_category_id": 1,
+    "taxon_ids": [
+      3,
+      11
+    ],
+    "total_on_hand": 10,
+    "has_variants": false,
+    "master": {
+      "id": 1,
+      "name": "Ruby on Rails Tote",
+      "sku": "ROR-00011",
+      "price": null,
+      "weight": "0.0",
+      "height": null,
+      "width": null,
+      "depth": null,
+      "is_master": true,
+      "slug": "ruby-on-rails-tote",
+      "description": "Qui ex et non sunt provident porro sit. Nesciunt doloremque quia sunt ut facilis eos impedit. Consequuntur beatae tenetur est dolorum nam. Facere maxime aut labore inventore minima.",
+      "track_inventory": true,
+      "display_price": "R$0.00",
+      "options_text": "",
+      "in_stock": true,
+      "is_backorderable": true,
+      "total_on_hand": 10,
+      "is_destroyed": false,
+      "option_values": [],
+      "images": [
+        {
+          "id": 21,
+          "position": 1,
+          "attachment_content_type": "image/jpeg",
+          "attachment_file_name": "ror_tote.jpeg",
+          "type": "Spree::Image",
+          "attachment_updated_at": "2015-08-06T00:03:32.791Z",
+          "attachment_width": 360,
+          "attachment_height": 360,
+          "alt": null,
+          "viewable_type": "Spree::Variant",
+          "viewable_id": 1,
+          "mini_url": "/spree/products/21/mini/ror_tote.jpeg?1438819412",
+          "small_url": "/spree/products/21/small/ror_tote.jpeg?1438819412",
+          "product_url": "/spree/products/21/product/ror_tote.jpeg?1438819412",
+          "large_url": "/spree/products/21/large/ror_tote.jpeg?1438819412"
+        },
+        {
+          "id": 22,
+          "position": 2,
+          "attachment_content_type": "image/jpeg",
+          "attachment_file_name": "ror_tote_back.jpeg",
+          "type": "Spree::Image",
+          "attachment_updated_at": "2015-08-06T00:03:33.312Z",
+          "attachment_width": 360,
+          "attachment_height": 360,
+          "alt": null,
+          "viewable_type": "Spree::Variant",
+          "viewable_id": 1,
+          "mini_url": "/spree/products/22/mini/ror_tote_back.jpeg?1438819413",
+          "small_url": "/spree/products/22/small/ror_tote_back.jpeg?1438819413",
+          "product_url": "/spree/products/22/product/ror_tote_back.jpeg?1438819413",
+          "large_url": "/spree/products/22/large/ror_tote_back.jpeg?1438819413"
+        }
+      ]
+    },
+    "variants": [],
+    "option_types": [],
+    "product_properties": [
+      {
+        "id": 25,
+        "product_id": 1,
+        "property_id": 9,
+        "value": "Tote",
+        "property_name": "Type"
+      },
+      {
+        "id": 26,
+        "product_id": 1,
+        "property_id": 10,
+        "value": "15\" x 18\" x 6\"",
+        "property_name": "Size"
+      },
+      {
+        "id": 27,
+        "product_id": 1,
+        "property_id": 11,
+        "value": "Canvas",
+        "property_name": "Material"
+      }
+    ],
+    "classifications": [
+      {
+        "taxon_id": 3,
+        "position": 1,
+        "taxon": {
+          "id": 3,
+          "name": "Bags",
+          "pretty_name": "Categories -> Bags",
+          "permalink": "categories/bags",
+          "parent_id": 1,
+          "taxonomy_id": 1,
+          "taxons": []
+        }
+      },
+      {
+        "taxon_id": 11,
+        "position": 1,
+        "taxon": {
+          "id": 11,
+          "name": "Rails",
+          "pretty_name": "Brand -> Rails",
+          "permalink": "brand/rails",
+          "parent_id": 2,
+          "taxonomy_id": 2,
+          "taxons": []
+        }
+      }
+    ]
+  }

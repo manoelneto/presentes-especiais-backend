@@ -15,4 +15,6 @@ Spree.config do |config|
   # config.track_inventory_levels = false
 end
 
+Spree::Api::Config[:requires_authentication] = false
+
 Spree.user_class = "Spree::User"

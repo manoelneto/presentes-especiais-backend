@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829023623) do
+ActiveRecord::Schema.define(version: 20151030023812) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -1006,5 +1006,13 @@ ActiveRecord::Schema.define(version: 20150829023623) do
 
   add_index "spree_zones", ["default_tax"], name: "index_spree_zones_on_default_tax"
   add_index "spree_zones", ["kind"], name: "index_spree_zones_on_kind"
+
+  create_table "themes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "product_id"
+  end
+
+  add_index "themes", ["product_id"], name: "index_themes_on_product_id"
 
 end
