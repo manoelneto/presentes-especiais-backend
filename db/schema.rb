@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030023812) do
+ActiveRecord::Schema.define(version: 20151101062441) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "categories", ["product_id"], name: "index_categories_on_product_id"
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -38,6 +47,15 @@ ActiveRecord::Schema.define(version: 20151030023812) do
   end
 
   add_index "identities", ["spree_user_id"], name: "index_identities_on_spree_user_id"
+
+  create_table "product_categories", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "product_categories", ["product_id"], name: "index_product_categories_on_product_id"
 
   create_table "spree_addresses", force: :cascade do |t|
     t.string   "firstname"
@@ -115,6 +133,15 @@ ActiveRecord::Schema.define(version: 20151030023812) do
   add_index "spree_calculators", ["calculable_id", "calculable_type"], name: "index_spree_calculators_on_calculable_id_and_calculable_type"
   add_index "spree_calculators", ["deleted_at"], name: "index_spree_calculators_on_deleted_at"
   add_index "spree_calculators", ["id", "type"], name: "index_spree_calculators_on_id_and_type"
+
+  create_table "spree_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "spree_categories", ["product_id"], name: "index_spree_categories_on_product_id"
 
   create_table "spree_countries", force: :cascade do |t|
     t.string   "iso_name"
@@ -411,9 +438,11 @@ ActiveRecord::Schema.define(version: 20151030023812) do
     t.datetime "updated_at",                          null: false
     t.boolean  "promotionable",        default: true
     t.string   "meta_title"
+    t.integer  "category_id"
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
+  add_index "spree_products", ["category_id"], name: "index_spree_products_on_category_id"
   add_index "spree_products", ["deleted_at"], name: "index_spree_products_on_deleted_at"
   add_index "spree_products", ["name"], name: "index_spree_products_on_name"
   add_index "spree_products", ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"

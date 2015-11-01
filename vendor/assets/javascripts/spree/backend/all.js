@@ -10,3 +10,5 @@
 
 //= require_tree .
 //= require spree/backend/spree_themes
+//= require spree/backend/spree_categories
+//= require spree/backend/spree_product_categories
