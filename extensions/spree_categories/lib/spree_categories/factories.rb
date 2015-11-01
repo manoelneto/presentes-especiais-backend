@@ -3,4 +3,9 @@ FactoryGirl.define do
   #
   # Example adding this to your spec_helper will load these Factories for use:
   # require 'spree_categories/factories'
+
+  factory :category, class: Spree::Category do
+    sequence(:name) { |n| "Category ##{n} - #{Kernel.rand(9999)}" }
+  end
+
 end

@@ -33,6 +33,10 @@ require 'spree/testing_support/url_helpers'
 # Requires factories defined in lib/spree_categories/factories.rb
 require 'spree_categories/factories'
 
+require 'spree/api/testing_support/caching'
+require 'spree/api/testing_support/helpers'
+require 'spree/api/testing_support/setup'
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
@@ -87,6 +91,9 @@ RSpec.configure do |config|
   config.after :each do
     DatabaseCleaner.clean
   end
+
+  config.include Spree::Api::TestingSupport::Helpers, :type => :controller
+  config.extend Spree::Api::TestingSupport::Setup, :type => :controller
 
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = "random"
