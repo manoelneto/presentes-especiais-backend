@@ -1,0 +1,41 @@
+---
+- hosts: landing
+  gather_facts: no
+  roles:
+    - role: rbenv
+      tags: only_ruby
+    - role: ruby-multi
+      tags: only_ruby
+      tags: only_multi_ruby
+
+- hosts: landing
+  gather_facts: no
+  sudo: true
+  sudo_user: root
+  vars_files:
+    - vars/defaults.yml
+
+  roles:
+    - role: webserver
+      tags: webserver
+    - role: nodejs
+      tags: nodejs
+    - role: database
+      tags: database
+    # - role: monit
+    #   tags: monit
+    #   monit_services:
+    #     - name: sshd
+    #       type: process
+    #       target: /var/run/sshd.pid
+    #       start: /usr/sbin/service sshd start
+    #       stop: /usr/sbin/service sshd stop
+    #     - name: localhost
+    #       type: system
+    #       rules:
+    #         - "if loadavg (1min) > 2 then alert"
+    #         - "if loadavg (5min) > 2 then alert"
+    #         - "if memory usage > 75% then alert"
+    #         - "if cpu usage (user) > 70% for 8 cycles then alert"
+    #         - "if cpu usage (system) > 40% for 8 cycles then alert"
+    #         - "if cpu usage (wait) > 20%  for 8 cycles then alert"

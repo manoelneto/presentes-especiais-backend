@@ -1,0 +1,14 @@
+- name: Installs ruby building dependencies
+  apt: name={{ item }} state=installed update-cache=yes
+  with_items: ruby_deps
+  tags:
+    - ruby
+    - ruby:install
+    - install
+
+- name: Create user for rbenv
+  user: name={{ ruby_deploy_user }} shell=/bin/bash
+  tags:
+    - ruby
+    - ruby:install
+    - install

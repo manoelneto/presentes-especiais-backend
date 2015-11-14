@@ -1,0 +1,59 @@
+## webapp
+
+webserver_name: sapesaude.ml
+deploy_directory: /data/app
+app_name: app
+
+## stolen from https://github.com/jgrowl/ansible-playbook-ruby-from-src
+rubyTmpDir: /usr/local/src
+rubyUrl: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz
+rubyCompressedFile: ruby-2.1.0.tar.gz
+rubyName: ruby-2.1.0
+tmpRubyPath: "{{rubyTmpDir}}/{{rubyName}}"
+
+
+# Fill if needed
+rbenv_makeopts: ""
+
+# Which user do we want to install ruby for
+ruby_deploy_user: app
+
+# Which versions we want to install (see `rbenv install -l`)
+ruby_versions:
+    - 2.0.0-p598
+    - 2.2.0
+
+# The default version (used with `rbenv global`)
+ruby_default: "2.2.0"
+
+# Dependencies required to build ruby
+# YMMV if you want something else than MRI
+ruby_deps:
+  - autoconf
+  - automake
+  - bison
+  - build-essential
+  - curl
+  - exuberant-ctags
+  - git-core
+  - libreadline6
+  - libreadline6-dev
+  - libreadline-dev
+  - libsqlite3-0
+  - libsqlite3-dev
+  - libssl-dev
+  - libyaml-dev
+  - libc6-dev
+  - libncurses5-dev
+  - libtool
+  - libxml2-dev
+  - libxslt1-dev
+  - openssl
+  - sqlite3
+  - subversion
+  - zlib1g
+  - zlib1g-dev
+  - libpq-dev
+  - imagemagick
+  - sendmail
+  - libffi-dev
