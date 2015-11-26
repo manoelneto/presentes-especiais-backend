@@ -24,14 +24,15 @@
   command: service postgresql restart
 
 # por algum motivo isso aqui não pegou
-# - name: create the postgresql user for application
-#   postgresql_user: name={{ ruby_deploy_user }}
-#   sudo: yes
-#   sudo_user: postgres
-#   tags: postgres_create_user
+# por algum motivo isso aqui pegou depois
+- name: create the postgresql user for application
+  postgresql_user: name={{ ruby_deploy_user }}
+  sudo: yes
+  sudo_user: postgres
+  tags: postgres_create_user
 
-# - name: create the postgresql database for application
-#   postgresql_db: name={{app_name}} owner={{ ruby_deploy_user }} state=present
-#   sudo: yes
-#   sudo_user: postgres
-#   tags: postgres_create_table
+- name: create the postgresql database for application
+  postgresql_db: name={{app_name}} owner={{ ruby_deploy_user }} state=present
+  sudo: yes
+  sudo_user: postgres
+  tags: postgres_create_table
