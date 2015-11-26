@@ -27,6 +27,15 @@ gem 'figaro'
 
 gem 'yard'
 
+group :production do
+
+  # Use the Unicorn app server
+  gem 'unicorn'
+
+  gem 'exception_notification'
+
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -66,12 +75,26 @@ group :development, :test do
   # test unit
   gem 'rspec-rails', '~> 3.0'
 
+  # deploy
+  gem 'capistrano', '~> 3.1.0'
+
+  # rails specific capistrano funcitons
+  gem 'capistrano-rails', '~> 1.1.0'
+
+  # integrate bundler with capistrano
+  gem 'capistrano-bundler'
+
+  # if you are using RBENV
+  gem 'capistrano-rbenv', "~> 2.0"
+
   gem 'guard-rspec'
   gem 'guard-annotate'
   gem 'guard-rails'
   gem 'database_cleaner',     '1.4.1'
   gem 'ffaker'
   gem 'better_errors',        '2.1.1'
+
+
 end
 
 gem 'spree', '3.0.3'
