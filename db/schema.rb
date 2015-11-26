@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151101062441) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "categories", ["product_id"], name: "index_categories_on_product_id"
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -47,15 +38,6 @@ ActiveRecord::Schema.define(version: 20151101062441) do
   end
 
   add_index "identities", ["spree_user_id"], name: "index_identities_on_spree_user_id"
-
-  create_table "product_categories", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "product_categories", ["product_id"], name: "index_product_categories_on_product_id"
 
   create_table "spree_addresses", force: :cascade do |t|
     t.string   "firstname"
@@ -136,12 +118,12 @@ ActiveRecord::Schema.define(version: 20151101062441) do
 
   create_table "spree_categories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "spree_product_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "spree_categories", ["product_id"], name: "index_spree_categories_on_product_id"
+  add_index "spree_categories", ["spree_product_id"], name: "index_spree_categories_on_spree_product_id"
 
   create_table "spree_countries", force: :cascade do |t|
     t.string   "iso_name"
@@ -438,15 +420,15 @@ ActiveRecord::Schema.define(version: 20151101062441) do
     t.datetime "updated_at",                          null: false
     t.boolean  "promotionable",        default: true
     t.string   "meta_title"
-    t.integer  "category_id"
+    t.integer  "spree_category_id"
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
-  add_index "spree_products", ["category_id"], name: "index_spree_products_on_category_id"
   add_index "spree_products", ["deleted_at"], name: "index_spree_products_on_deleted_at"
   add_index "spree_products", ["name"], name: "index_spree_products_on_name"
   add_index "spree_products", ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
   add_index "spree_products", ["slug"], name: "index_spree_products_on_slug", unique: true
+  add_index "spree_products", ["spree_category_id"], name: "index_spree_products_on_spree_category_id"
   add_index "spree_products", ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
 
   create_table "spree_products_promotion_rules", id: false, force: :cascade do |t|
@@ -939,6 +921,14 @@ ActiveRecord::Schema.define(version: 20151101062441) do
   add_index "spree_taxons_prototypes", ["prototype_id"], name: "index_spree_taxons_prototypes_on_prototype_id"
   add_index "spree_taxons_prototypes", ["taxon_id"], name: "index_spree_taxons_prototypes_on_taxon_id"
 
+  create_table "spree_themes", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "spree_product_id"
+  end
+
+  add_index "spree_themes", ["spree_product_id"], name: "index_spree_themes_on_spree_product_id"
+
   create_table "spree_trackers", force: :cascade do |t|
     t.string   "analytics_id"
     t.boolean  "active",       default: true
@@ -1035,13 +1025,5 @@ ActiveRecord::Schema.define(version: 20151101062441) do
 
   add_index "spree_zones", ["default_tax"], name: "index_spree_zones_on_default_tax"
   add_index "spree_zones", ["kind"], name: "index_spree_zones_on_kind"
-
-  create_table "themes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "product_id"
-  end
-
-  add_index "themes", ["product_id"], name: "index_themes_on_product_id"
 
 end

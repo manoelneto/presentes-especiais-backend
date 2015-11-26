@@ -4,8 +4,8 @@ Spree::Api::BaseController.class_eval do
   def product_scope
     scope = product_scope_original
 
-    if params[:category_id].present?
-      scope = scope.where(category_id: params[:category_id])
+    if params[:spree_category_id].present?
+      scope = scope.where(spree_category_id: params[:spree_category_id])
     end
 
     scope
