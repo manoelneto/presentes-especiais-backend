@@ -34,6 +34,8 @@ group :production do
 
   gem 'exception_notification'
 
+  gem 'pg'
+
 end
 
 # Use ActiveModel has_secure_password
