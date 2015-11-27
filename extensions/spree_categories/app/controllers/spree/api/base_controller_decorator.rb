@@ -1,12 +1,23 @@
 Spree::Api::BaseController.class_eval do
-  alias_method :product_scope_original, :product_scope
-
   def product_scope
-    scope = product_scope_original
+    if @current_user_roles.include?("admin")
+      scope = Spree::Product.with_deleted.accessible_by(current_ability, :read).includes(*product_includes)
 
-    if params[:spree_category_id].present?
-      scope = scope.where(spree_category_id: params[:spree_category_id])
+      unless params[:show_deleted]
+        scope = scope.not_deleted
+      end
+    else
+      scope = Spree::Product.accessible_by(current_ability, :read).active.includes(*product_includes)
     end
+
+    ap params
+
+    if params[:category_id].present?
+      scope = scope.where(spree_category_id: params[:category_id])
+    end
+
+    ap 'aqui'
+    ap scope
 
     scope
   end
