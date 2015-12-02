@@ -26,7 +26,7 @@
 # por algum motivo isso aqui não pegou
 # por algum motivo isso aqui pegou depois
 - name: create the postgresql user for application
-  postgresql_user: name={{ ruby_deploy_user }}
+  postgresql_user: name={{ ruby_deploy_user }} role_attr_flags=CREATEDB,NOSUPERUSER
   sudo: yes
   sudo_user: postgres
   tags: postgres_create_user

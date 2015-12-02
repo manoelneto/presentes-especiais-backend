@@ -16,8 +16,12 @@ Rails.application.routes.draw do
 
   get 'users' => 'users#index'
 
-  namespace :spree do
-    namespace :api do
+  scope module: :spree do
+    namespace :api, format: 'json' do
+      resources :categories, only: [:index] do
+        resources :products, only: [:index]
+      end
+
       namespace :v1 do
         resources :users, only: [:create], format: 'json' do
           collection do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101062441) do
+ActiveRecord::Schema.define(version: 20151201022850) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -118,12 +118,9 @@ ActiveRecord::Schema.define(version: 20151101062441) do
 
   create_table "spree_categories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "spree_product_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "spree_categories", ["spree_product_id"], name: "index_spree_categories_on_spree_product_id"
 
   create_table "spree_countries", force: :cascade do |t|
     t.string   "iso_name"
@@ -361,6 +358,19 @@ ActiveRecord::Schema.define(version: 20151101062441) do
   add_index "spree_payments", ["order_id"], name: "index_spree_payments_on_order_id"
   add_index "spree_payments", ["payment_method_id"], name: "index_spree_payments_on_payment_method_id"
   add_index "spree_payments", ["source_id", "source_type"], name: "index_spree_payments_on_source_id_and_source_type"
+
+  create_table "spree_personalizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "spree_product_id"
+  end
+
+  add_index "spree_personalizations", ["spree_product_id"], name: "index_spree_personalizations_on_spree_product_id"
 
   create_table "spree_preferences", force: :cascade do |t|
     t.text     "value"

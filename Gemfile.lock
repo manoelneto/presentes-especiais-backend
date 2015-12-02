@@ -26,22 +26,6 @@ GIT
       correios-frete (~> 1.9.3)
       spree_core (>= 1.0.0)
 
-PATH
-  remote: ./extensions/spree_categories
-  specs:
-    spree_categories (3.0.3)
-
-PATH
-  remote: ./extensions/spree_presentes_admin
-  specs:
-    spree_presentes_admin (3.0.3)
-      spree_core (~> 3.0.3)
-
-PATH
-  remote: ./extensions/spree_themes
-  specs:
-    spree_themes (3.0.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -524,11 +508,8 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spree (= 3.0.3)
   spree_auth_devise!
-  spree_categories (= 3.0.3)!
   spree_correios!
   spree_gateway!
-  spree_presentes_admin (= 3.0.3)!
-  spree_themes (= 3.0.3)!
   spring
   sqlite3
   turbolinks

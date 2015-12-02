@@ -96,15 +96,11 @@ group :development, :test do
   gem 'ffaker'
   gem 'better_errors',        '2.1.1'
 
-
 end
 
 gem 'spree', '3.0.3'
 gem 'spree_gateway', github: 'spree/spree_gateway', branch: '3-0-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '3-0-stable'
-gem 'spree_presentes_admin', '3.0.3', :path => './extensions/spree_presentes_admin'
-gem 'spree_themes', '3.0.3', :path => './extensions/spree_themes'
-gem 'spree_categories', '3.0.3', :path => './extensions/spree_categories'
 
 gem 'rack-cors', :require => 'rack/cors'
 
