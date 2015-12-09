@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
   #
+
+
+  #
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/'
           # The priority is based upon order of creation: first created -> highest priority.
@@ -17,6 +20,14 @@ Rails.application.routes.draw do
   get 'users' => 'users#index'
 
   scope module: :spree do
+    namespace :admin do
+      resources :products do
+        member do
+          get :personalization
+        end
+      end
+    end
+
     namespace :api, format: 'json' do
       resources :categories, only: [:index] do
         resources :products, only: [:index]

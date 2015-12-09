@@ -9,5 +9,3 @@
 //= require spree/frontend
 
 //= require_tree .
-//= require spree/frontend/spree_themes
-//= require spree/frontend/spree_categories
