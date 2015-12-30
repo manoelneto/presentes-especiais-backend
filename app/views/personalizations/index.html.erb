@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Personalizations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Theme</th>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Order</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personalizations.each do |personalization| %>
+      <tr>
+        <td><%= personalization.theme %></td>
+        <td><%= personalization.picture %></td>
+        <td><%= personalization.name %></td>
+        <td><%= personalization.order %></td>
+        <td><%= link_to 'Show', personalization %></td>
+        <td><%= link_to 'Edit', edit_personalization_path(personalization) %></td>
+        <td><%= link_to 'Destroy', personalization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Personalization', new_personalization_path %>

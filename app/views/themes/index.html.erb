@@ -1,0 +1,98 @@
+<%#= render partial: 'spree/admin/shared/product_tabs', locals: { current: :personalization } %>
+
+<div class="personalization-screen">
+  <div class="personalization-list">
+    <div class="row">
+      <% 5.times do %>
+      <div class="col-6">
+        <div class="personalization">
+          <figure>
+            <img src="http://placehold.it/500x500" alt="">
+            <div class="shadow"></div>
+            <figcaption>
+              Parte 1 - Frente
+
+              <span class="buttons">
+                <a class="btn btn-primary btn-sm icon-link with-tip action-edit no-text" data-action="edit" title="" href="#" data-original-title="Edit">
+                  <span class="icon icon-edit"></span>
+                </a>
+                <a class="btn btn-danger btn-sm delete-resource icon-link with-tip action-delete no-text" data-confirm="Are you sure?" data-action="remove" title="" href="#" data-original-title="Delete">
+                  <span class="icon icon-delete"></span>
+                </a>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="col-6">
+        <div class="personalization add">
+          <span class="relative">
+            <span class="widther"></span>
+            <span class="absoluter">
+              <span class="table-wrapper">
+                <span class="table-middler">
+                  Add personalization
+                </span>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--
+
+<img src="http://placehold.it/500x500" alt="" id="photo">
+
+<script>
+  $(document).ready(function () {
+    $('#photo').imgAreaSelect({ aspectRatio: "1:1", handles: true });
+  });
+</script>
+
+Plugin http://odyniec.net/projects/imgareaselect/
+ -->
+<%# content_for :page_actions do %>
+  <%#= button_link_to(Spree.t(:new_image), spree.new_admin_product_image_url(@product), { class: "btn-success", icon: 'add', id: 'new_image_link' }) if can? :create, Spree::Image %>
+<%# end %>
+
+
+<!--
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Themes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spree product</th>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Default</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @themes.each do |theme| %>
+      <tr>
+        <td><%= theme.spree_product %></td>
+        <td><%= theme.picture %></td>
+        <td><%= theme.name %></td>
+        <td><%= theme.default %></td>
+        <td><%= link_to 'Show', theme %></td>
+        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
+        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+ -->
+<%= link_to 'New Theme', main_app.new_product_theme_path(@product) %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Layout:</strong>
+  <%= @area_edition.layout %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @area_edition.name %>
+</p>
+
+<p>
+  <strong>Required:</strong>
+  <%= @area_edition.required %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @area_edition.order %>
+</p>
+
+<p>
+  <strong>Area type:</strong>
+  <%= @area_edition.area_type %>
+</p>
+
+<%= link_to 'Edit', edit_area_edition_path(@area_edition) %> |
+<%= link_to 'Back', area_editions_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @personalization.theme %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @personalization.picture %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @personalization.name %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @personalization.order %>
+</p>
+
+<%= link_to 'Edit', edit_personalization_path(@personalization) %> |
+<%= link_to 'Back', personalizations_path %>

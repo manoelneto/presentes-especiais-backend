@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202025238) do
+ActiveRecord::Schema.define(version: 20151230022122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "area_editions", force: :cascade do |t|
+    t.integer  "layout_id"
+    t.string   "name"
+    t.boolean  "required"
+    t.integer  "order"
+    t.string   "area_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "area_editions", ["layout_id"], name: "index_area_editions_on_layout_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -41,6 +53,30 @@ ActiveRecord::Schema.define(version: 20151202025238) do
   end
 
   add_index "identities", ["spree_user_id"], name: "index_identities_on_spree_user_id", using: :btree
+
+  create_table "layouts", force: :cascade do |t|
+    t.integer  "personalization_id"
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "layouts", ["personalization_id"], name: "index_layouts_on_personalization_id", using: :btree
+
+  create_table "personalizations", force: :cascade do |t|
+    t.integer  "theme_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "personalizations", ["theme_id"], name: "index_personalizations_on_theme_id", using: :btree
 
   create_table "spree_addresses", force: :cascade do |t|
     t.string   "firstname"
@@ -1049,10 +1085,28 @@ ActiveRecord::Schema.define(version: 20151202025238) do
   add_index "spree_zones", ["default_tax"], name: "index_spree_zones_on_default_tax", using: :btree
   add_index "spree_zones", ["kind"], name: "index_spree_zones_on_kind", using: :btree
 
+  create_table "themes", force: :cascade do |t|
+    t.integer  "spree_product_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "name"
+    t.boolean  "default"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "themes", ["spree_product_id"], name: "index_themes_on_spree_product_id", using: :btree
+
+  add_foreign_key "area_editions", "layouts"
   add_foreign_key "identities", "spree_users"
+  add_foreign_key "layouts", "personalizations"
+  add_foreign_key "personalizations", "themes"
   add_foreign_key "spree_personalization_themes", "spree_personalizations"
   add_foreign_key "spree_personalization_themes", "spree_themes"
   add_foreign_key "spree_personalizations", "spree_products"
   add_foreign_key "spree_products", "spree_categories"
   add_foreign_key "spree_themes", "spree_products"
+  add_foreign_key "themes", "spree_products"
 end

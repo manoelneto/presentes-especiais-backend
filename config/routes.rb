@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # resources :themes
+  # resources :area_editions
+  # resources :layouts
+  # resources :personalizations
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -19,12 +23,22 @@ Rails.application.routes.draw do
 
   get 'users' => 'users#index'
 
+  scope :admin do
+    resources :products, only: [] do
+      resources :themes do
+        resources :personalizations do
+          resources :layouts do
+            resources :area_editions
+          end
+        end
+      end
+    end
+  end
+
   scope module: :spree do
     namespace :admin do
       resources :products do
-        member do
-          get :personalization
-        end
+
       end
     end
 
