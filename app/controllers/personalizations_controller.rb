@@ -1,10 +1,11 @@
-class PersonalizationsController < ApplicationController
+class PersonalizationsController < Spree::Admin::BaseController
+  before_action :set_parents
   before_action :set_personalization, only: [:show, :edit, :update, :destroy]
 
   # GET /personalizations
   # GET /personalizations.json
   def index
-    @personalizations = Personalization.all
+    @personalizations = @theme.personalizations.all
   end
 
   # GET /personalizations/1
@@ -14,7 +15,7 @@ class PersonalizationsController < ApplicationController
 
   # GET /personalizations/new
   def new
-    @personalization = Personalization.new
+    @personalization = @theme.personalizations.new
   end
 
   # GET /personalizations/1/edit
@@ -24,11 +25,11 @@ class PersonalizationsController < ApplicationController
   # POST /personalizations
   # POST /personalizations.json
   def create
-    @personalization = Personalization.new(personalization_params)
+    @personalization = @theme.personalizations.new(personalization_params)
 
     respond_to do |format|
       if @personalization.save
-        format.html { redirect_to @personalization, notice: 'Personalization was successfully created.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization]), notice: 'Personalization was successfully created.' }
         format.json { render :show, status: :created, location: @personalization }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PersonalizationsController < ApplicationController
   def update
     respond_to do |format|
       if @personalization.update(personalization_params)
-        format.html { redirect_to @personalization, notice: 'Personalization was successfully updated.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme]), notice: 'Personalization was successfully updated.' }
         format.json { render :show, status: :ok, location: @personalization }
       else
         format.html { render :edit }
@@ -56,15 +57,20 @@ class PersonalizationsController < ApplicationController
   def destroy
     @personalization.destroy
     respond_to do |format|
-      format.html { redirect_to personalizations_url, notice: 'Personalization was successfully destroyed.' }
+      format.html { redirect_to main_app.url_for([@product, @theme, :personalizations]), notice: 'Personalization was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_parents
+      @product = Spree::Product.find_by slug: params[:product_id]
+      @theme = @product.themes.find params[:theme_id]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_personalization
-      @personalization = Personalization.find(params[:id])
+      @personalization = @theme.personalizations.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

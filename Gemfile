@@ -89,6 +89,8 @@ group :development, :test do
   # if you are using RBENV
   gem 'capistrano-rbenv', "~> 2.0"
 
+  gem 'annotate'
+
   gem 'guard-rspec'
   gem 'guard-annotate'
   gem 'guard-rails'
@@ -109,3 +111,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-facebook-access-token'
 gem 'awesome_print'
 gem 'spree_correios', git: 'git@gitlab-webfac.tk:presentes-especiais/spree_correios.git'
+gem 'simple_form'
+gem 'paperclip'

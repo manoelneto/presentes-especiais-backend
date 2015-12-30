@@ -29,7 +29,7 @@ class ThemesController < Spree::Admin::BaseController
 
     respond_to do |format|
       if @theme.save
-        format.html { redirect_to main_app.product_theme_path(@product, @theme), notice: 'Theme was successfully created.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme]), notice: 'Theme was successfully created.' }
         format.json { render :show, status: :created, location: @theme }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ThemesController < Spree::Admin::BaseController
   def update
     respond_to do |format|
       if @theme.update(theme_params)
-        format.html { redirect_to main_app.product_theme_path(@product, @theme), notice: 'Theme was successfully updated.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme]), notice: 'Theme was successfully updated.' }
         format.json { render :show, status: :ok, location: @theme }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ThemesController < Spree::Admin::BaseController
   def destroy
     @theme.destroy
     respond_to do |format|
-      format.html { redirect_to themes_url, notice: 'Theme was successfully destroyed.' }
+      format.html { redirect_to main_app.url_for([@product, :themes]), notice: 'Theme was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

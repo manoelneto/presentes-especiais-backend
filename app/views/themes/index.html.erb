@@ -1,4 +1,4 @@
-<%#= render partial: 'spree/admin/shared/product_tabs', locals: { current: :personalization } %>
+<%= render partial: 'spree/admin/shared/product_tabs', locals: { current: :personalization } %>
 
 <div class="personalization-screen">
   <div class="personalization-list">
@@ -62,7 +62,7 @@ Plugin http://odyniec.net/projects/imgareaselect/
 <%# end %>
 
 
-<!--
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Themes</h1>
@@ -81,18 +81,16 @@ Plugin http://odyniec.net/projects/imgareaselect/
   <tbody>
     <% @themes.each do |theme| %>
       <tr>
-        <td><%= theme.spree_product %></td>
-        <td><%= theme.picture %></td>
         <td><%= theme.name %></td>
         <td><%= theme.default %></td>
-        <td><%= link_to 'Show', theme %></td>
-        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
-        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', main_app.url_for([@product, theme]) %></td>
+        <td><%= link_to 'Edit', main_app.url_for(:edit, @product, theme) %></td>
+        <td><%= link_to 'Destroy', main_app.url_for([@product, theme]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
- -->
-<%= link_to 'New Theme', main_app.new_product_theme_path(@product) %>
+
+<%= link_to 'New Theme', main_app.url_for(:new, @product, :theme) %>

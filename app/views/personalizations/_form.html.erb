@@ -1,33 +1,16 @@
-<%= form_for(@personalization) do |f| %>
-  <% if @personalization.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@personalization.errors.count, "error") %> prohibited this personalization from being saved:</h2>
-
-      <ul>
-      <% @personalization.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for(@personalization, url: main_app.url_for([@product, @theme, @personalization]),  html: { class: '' }) do |f| %>
+  <fieldset>
+    <legend>Personalização</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :name %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :picture %>
+      </div>
+      <div class="col-md-12">
+        <%= f.button :submit %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :theme_id %><br>
-    <%= f.text_field :theme_id %>
-  </div>
-  <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.text_field :picture %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :order %><br>
-    <%= f.number_field :order %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </fieldset>
 <% end %>
