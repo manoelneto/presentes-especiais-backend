@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Personalization</th>
       <th>Name</th>
-      <th>Order</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +13,10 @@
   <tbody>
     <% @layouts.each do |layout| %>
       <tr>
-        <td><%= layout.personalization %></td>
         <td><%= layout.name %></td>
-        <td><%= layout.order %></td>
-        <td><%= link_to 'Show', layout %></td>
-        <td><%= link_to 'Edit', edit_layout_path(layout) %></td>
-        <td><%= link_to 'Destroy', layout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', main_app.url_for([@product, @theme, @personalization, layout]) %></td>
+        <td><%= link_to 'Edit', main_app.url_for([:edit, @product, @theme, @personalization, layout]) %></td>
+        <td><%= link_to 'Destroy', main_app.url_for([@product, @theme, @personalization, layout]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Layout', new_layout_path %>
+<%= link_to 'New Layout', main_app.url_for([:new, @product, @theme, @personalization, :layout]) %>

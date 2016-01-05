@@ -11,5 +11,10 @@
 #
 
 class Layout < ActiveRecord::Base
-  belongs_to :personalization
+  belongs_to :personalization, inverse_of: :layouts
+  has_many :area_editions, inverse_of: :layout, dependent: :destroy
+
+  accepts_nested_attributes_for :area_editions
+
+  validates_presence_of :name
 end

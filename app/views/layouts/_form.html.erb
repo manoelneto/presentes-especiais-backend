@@ -1,29 +1,30 @@
-<%= form_for(@layout) do |f| %>
-  <% if @layout.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@layout.errors.count, "error") %> prohibited this layout from being saved:</h2>
-
-      <ul>
-      <% @layout.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for(@layout, url: main_app.url_for([@product, @theme, @personalization, @layout]),  html: { class: '' }) do |f| %>
+  <fieldset>
+    <legend>Layout</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :name %>
+      </div>
+      <div class="col-md-12">
+        <%= f.button :submit %>
+      </div>
     </div>
-  <% end %>
+  </fieldset>
 
-  <div class="field">
-    <%= f.label :personalization_id %><br>
-    <%= f.text_field :personalization_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :order %><br>
-    <%= f.number_field :order %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldset>
+    <legend>
+      Areas de Edição
+    </legend>
+
+    <%= f.simple_fields_for :area_editions do |a| %>
+      <div class="col-md-6">
+        <%= a.input :name %>
+        <%= a.input :required %>
+        <%= a.input :order %>
+        <%= a.select :area_type, [["Image", "image"], ["Text", "text"]] %>
+      </div>
+    <% end %>
+  </fieldset>
+
+
 <% end %>

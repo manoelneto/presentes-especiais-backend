@@ -1,10 +1,11 @@
-class LayoutsController < ApplicationController
+class LayoutsController < Spree::Admin::BaseController
+  before_action :set_parents
   before_action :set_layout, only: [:show, :edit, :update, :destroy]
 
   # GET /layouts
   # GET /layouts.json
   def index
-    @layouts = Layout.all
+    @layouts = @personalization.layouts.all
   end
 
   # GET /layouts/1
@@ -14,21 +15,23 @@ class LayoutsController < ApplicationController
 
   # GET /layouts/new
   def new
-    @layout = Layout.new
+    @layout = @personalization.layouts.new
   end
 
   # GET /layouts/1/edit
   def edit
+    @layout.area_editions.build
   end
 
   # POST /layouts
   # POST /layouts.json
   def create
-    @layout = Layout.new(layout_params)
+    @layout = @personalization.layouts.new(layout_params)
+    @layout.area_editions.build
 
     respond_to do |format|
       if @layout.save
-        format.html { redirect_to @layout, notice: 'Layout was successfully created.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization, @layout]), notice: 'Layout was successfully created.' }
         format.json { render :show, status: :created, location: @layout }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class LayoutsController < ApplicationController
   def update
     respond_to do |format|
       if @layout.update(layout_params)
-        format.html { redirect_to @layout, notice: 'Layout was successfully updated.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization, @layout]), notice: 'Layout was successfully updated.' }
         format.json { render :show, status: :ok, location: @layout }
       else
         format.html { render :edit }
@@ -56,12 +59,18 @@ class LayoutsController < ApplicationController
   def destroy
     @layout.destroy
     respond_to do |format|
-      format.html { redirect_to layouts_url, notice: 'Layout was successfully destroyed.' }
+      format.html { redirect_to main_app.url_for([@product, @theme, @personalization, :layouts]), notice: 'Layout was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_parents
+      @product = Spree::Product.find_by slug: params[:product_id]
+      @theme = @product.themes.find params[:theme_id]
+      @personalization = @theme.personalizations.find params[:personalization_id]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_layout
       @layout = Layout.find(params[:id])

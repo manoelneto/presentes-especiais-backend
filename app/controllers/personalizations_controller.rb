@@ -43,7 +43,7 @@ class PersonalizationsController < Spree::Admin::BaseController
   def update
     respond_to do |format|
       if @personalization.update(personalization_params)
-        format.html { redirect_to main_app.url_for([:edit, @product, @theme]), notice: 'Personalization was successfully updated.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization]), notice: 'Personalization was successfully updated.' }
         format.json { render :show, status: :ok, location: @personalization }
       else
         format.html { render :edit }

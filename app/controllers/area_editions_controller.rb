@@ -1,10 +1,11 @@
-class AreaEditionsController < ApplicationController
+class AreaEditionsController < Spree::Admin::BaseController
+  before_action :set_parents
   before_action :set_area_edition, only: [:show, :edit, :update, :destroy]
 
   # GET /area_editions
   # GET /area_editions.json
   def index
-    @area_editions = AreaEdition.all
+    @area_editions = @layout.area_editions.all
   end
 
   # GET /area_editions/1
@@ -14,7 +15,7 @@ class AreaEditionsController < ApplicationController
 
   # GET /area_editions/new
   def new
-    @area_edition = AreaEdition.new
+    @area_edition = @layout.area_editions.new
   end
 
   # GET /area_editions/1/edit
@@ -24,11 +25,11 @@ class AreaEditionsController < ApplicationController
   # POST /area_editions
   # POST /area_editions.json
   def create
-    @area_edition = AreaEdition.new(area_edition_params)
+    @area_edition = @layout.area_editions.new(area_edition_params)
 
     respond_to do |format|
       if @area_edition.save
-        format.html { redirect_to @area_edition, notice: 'Area edition was successfully created.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization, @layout, @area_edition]), notice: 'Area edition was successfully created.' }
         format.json { render :show, status: :created, location: @area_edition }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class AreaEditionsController < ApplicationController
   def update
     respond_to do |format|
       if @area_edition.update(area_edition_params)
-        format.html { redirect_to @area_edition, notice: 'Area edition was successfully updated.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization, @layout, @area_edition]), notice: 'Area edition was successfully updated.' }
         format.json { render :show, status: :ok, location: @area_edition }
       else
         format.html { render :edit }
@@ -56,15 +57,23 @@ class AreaEditionsController < ApplicationController
   def destroy
     @area_edition.destroy
     respond_to do |format|
-      format.html { redirect_to area_editions_url, notice: 'Area edition was successfully destroyed.' }
+      format.html { redirect_to main_app.url_for([@product, @theme, @personalization, @layout, :area_editions]), notice: 'Area edition was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def set_parents
+      @product = Spree::Product.find_by slug: params[:product_id]
+      @theme = @product.themes.find params[:theme_id]
+      @personalization = @theme.personalizations.find params[:personalization_id]
+      @layout = @personalization.layouts.find params[:layout_id]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_area_edition
-      @area_edition = AreaEdition.find(params[:id])
+      @area_edition = @layout.area_editions.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

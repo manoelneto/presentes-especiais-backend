@@ -1,5 +1,11 @@
+<%= render partial: 'spree/admin/shared/product_tabs', locals: { current: :personalization } %>
+
 <h1>New Area Edition</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', area_editions_path %>
+<%= link_to main_app.url_for([@product, @theme, @personalization, :layouts]), class: 'btn btn-danger' do %>
+  <span class="icon icon-delete"></span>
+  Cancel or Back
+<% end %>
+

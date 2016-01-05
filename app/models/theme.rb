@@ -16,7 +16,7 @@
 
 class Theme < ActiveRecord::Base
   belongs_to :spree_product, inverse_of: :themes, class_name: 'Spree::Product'
-  has_many :personalizations, inverse_of: :theme
+  has_many :personalizations, inverse_of: :theme, dependent: :destroy
   accepts_nested_attributes_for :personalizations
 
   #paperclip

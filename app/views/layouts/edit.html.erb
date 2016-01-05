@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @layout %> |
-<%= link_to 'Back', layouts_path %>
+<%= link_to main_app.url_for([@product, @theme, @personalization]), class: 'btn btn-danger' do %>
+  <span class="icon icon-delete"></span>
+  Cancel
+<% end %>

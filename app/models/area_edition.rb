@@ -13,5 +13,5 @@
 #
 
 class AreaEdition < ActiveRecord::Base
-  belongs_to :layout
+  belongs_to :layout, inverse_of: :area_editions
 end
