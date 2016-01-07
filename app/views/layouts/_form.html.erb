@@ -5,9 +5,6 @@
       <div class="col-md-6">
         <%= f.input :name %>
       </div>
-      <div class="col-md-12">
-        <%= f.button :submit %>
-      </div>
     </div>
   </fieldset>
 
@@ -16,15 +13,48 @@
       Areas de Edição
     </legend>
 
-    <%= f.simple_fields_for :area_editions do |a| %>
-      <div class="col-md-6">
-        <%= a.input :name %>
-        <%= a.input :required %>
-        <%= a.input :order %>
-        <%= a.select :area_type, [["Image", "image"], ["Text", "text"]] %>
-      </div>
+    <div class="row newRecordCreatedRow">
+      <%= f.simple_fields_for :area_editions do |a| %>
+        <div class="col-md-6 duplicatable_nested_form">
+          <%= image_tag @personalization.picture.url(:area_bg), class: 'background' %>
+          <div class="row">
+            <div class="col-md-3">
+              <%= a.input :x1, input_html: {class: 'x1'} %>
+            </div>
+            <div class="col-md-3">
+              <%= a.input :y1, input_html: {class: 'y1'} %>
+            </div>
+            <div class="col-md-3">
+              <%= a.input :x2, input_html: {class: 'x2'} %>
+            </div>
+            <div class="col-md-3">
+              <%= a.input :y2, input_html: {class: 'y2'} %>
+            </div>
+          </div>
+          <%= a.input :name %>
+          <%= a.input :required %>
+          <%= a.select :area_type, [["Image", "image"], ["Text", "text"]] %>
+
+          <% if a.object.new_record? %>
+            <%= link_to 'Remove', '', :remote => true, :class => 'destroy_duplicate_nested_form' %>
+          <% else %>
+            <%= link_to 'Remove', main_app.url_for([@product, @theme, @personalization, @layout, a.object]), :method => :delete, :remote => true, :class => 'destroy_duplicate_nested_form' %>
+            <%= a.input :id, as: :hidden %>
+          <% end %>
+        </div>
+
+      <% end %>
+    </div>
+
+    <%= link_to '#', class: 'duplicate_nested_form btn btn-primary' do %>
+      <span class="icon icon-plus"></span>
+      Add other area
     <% end %>
+
   </fieldset>
 
+  <div class="col-md-12">
+    <%= f.button :submit %>
+  </div>
 
 <% end %>

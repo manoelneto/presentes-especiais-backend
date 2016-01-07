@@ -7,7 +7,7 @@
         <%= f.input :default, hint: Spree.t('personalizations.themes.default.hint') %>
       </div>
       <div class="col-md-6">
-        <%= f.input :picture %>
+        <%= f.input :picture , as: :image_preview, input_html: {preview_version: :small_thumb} %>
       </div>
       <div class="col-md-12">
         <%= f.button :submit %>
@@ -21,23 +21,41 @@
         Personalizações
       </legend>
 
-      <div class="row">
-        <ul class="col-md-12">
-          <% if @theme.personalizations.any? %>
+      <% if @theme.personalizations.any? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Picture</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
             <% @theme.personalizations.each do |personalization| %>
-              <li>
-                <%= link_to personalization.name, main_app.url_for([:edit, @product, @theme, personalization]) %>
-              </li>
+            <tr>
+              <td><%= personalization.name %></td>
+              <td>
+                <%= image_tag personalization.picture.url(:small_thumb) %>
+              </td>
+              <td>
+                <%= link_to 'Show', show_link(personalization) %>
+                <%= link_to 'Edit', edit_link(personalization) %>
+                <%= link_to 'Destroy', show_link(personalization), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
             <% end %>
-          <% else %>
-            Sem personalizações
-          <% end %>
-        </ul>
-      </div>
+          </tbody>
+        </table>
+      <% else %>
+        <p>
+          Sem personalizações
+        </p>
+      <% end %>
 
       <div class="row">
         <div class="col-md-12">
-          <%= link_to main_app.url_for([:new, @product, @theme, :personalization]), class: 'btn btn-primary' do %>
+          <%= link_to new_link(:personalization), class: 'btn btn-primary' do %>
             <i class="icon icon-plus"></i>
             Nova personalização
           <% end %>

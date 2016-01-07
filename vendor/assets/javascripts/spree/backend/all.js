@@ -8,4 +8,6 @@
 //= require jquery_ujs
 //= require spree/backend
 
-//= require_tree .
+//= require ./jquery.imgareaselect/scripts/jquery.imgareaselect
+//= require ./area_select
+//= require ./duplicate_nested

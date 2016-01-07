@@ -114,6 +114,11 @@ GEM
       sshkit (~> 1.3)
     carmen (1.0.2)
       activesupport (>= 3.0.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     cldr-plurals-runtime-rb (1.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -228,6 +233,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.1)
+    mini_magick (4.3.6)
     mini_portile (0.6.2)
     minitest (5.7.0)
     monetize (1.3.1)
@@ -368,6 +374,10 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    simple_form_fancy_uploads (0.2.0)
+      carrierwave
+      rails (>= 4.0.0)
+      simple_form (~> 3.1)
     slop (3.6.0)
     spree (3.0.3)
       spree_api (= 3.0.3)
@@ -490,6 +500,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails (~> 1.1.0)
   capistrano-rbenv (~> 2.0)
+  carrierwave
   coffee-rails (~> 4.1.0)
   database_cleaner (= 1.4.1)
   exception_notification
@@ -501,10 +512,10 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
+  mini_magick
   omniauth
   omniauth-facebook
   omniauth-facebook-access-token
-  paperclip
   pg
   rack-cors
   rails (= 4.2.2)
@@ -512,6 +523,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form
+  simple_form_fancy_uploads
   spree (= 3.0.3)
   spree_auth_devise!
   spree_correios!

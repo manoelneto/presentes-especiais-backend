@@ -27,11 +27,10 @@ class LayoutsController < Spree::Admin::BaseController
   # POST /layouts.json
   def create
     @layout = @personalization.layouts.new(layout_params)
-    @layout.area_editions.build
 
     respond_to do |format|
       if @layout.save
-        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization, @layout]), notice: 'Layout was successfully created.' }
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization]), notice: 'Layout was successfully created.' }
         format.json { render :show, status: :created, location: @layout }
       else
         format.html { render :new }
@@ -45,9 +44,11 @@ class LayoutsController < Spree::Admin::BaseController
   def update
     respond_to do |format|
       if @layout.update(layout_params)
-        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization, @layout]), notice: 'Layout was successfully updated.' }
-        format.json { render :show, status: :ok, location: @layout }
+        @layout.area_editions.build
+        format.html { redirect_to main_app.url_for([:edit, @product, @theme, @personalization]), notice: 'Layout was successfully updated.' }
+        format.json { render :edit, status: :ok, location: @layout }
       else
+        @layout.area_editions.build
         format.html { render :edit }
         format.json { render json: @layout.errors, status: :unprocessable_entity }
       end
@@ -78,6 +79,16 @@ class LayoutsController < Spree::Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def layout_params
-      params.require(:layout).permit(:personalization_id, :name, :order)
+      params.require(:layout).permit(:personalization_id, :name, :order, :area_editions_attributes => [
+        :id,
+        :x1,
+        :y1,
+        :x2,
+        :y2,
+        :name,
+        :required,
+        :area_type,
+        :order
+      ])
     end
 end

@@ -1,6 +1,7 @@
 class PersonalizationsController < Spree::Admin::BaseController
   before_action :set_parents
   before_action :set_personalization, only: [:show, :edit, :update, :destroy]
+  helper_method [:show_link, :edit_link, :new_link]
 
   # GET /personalizations
   # GET /personalizations.json
@@ -60,6 +61,18 @@ class PersonalizationsController < Spree::Admin::BaseController
       format.html { redirect_to main_app.url_for([@product, @theme, :personalizations]), notice: 'Personalization was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def show_link object=nil
+    main_app.url_for([@product, @theme, @personalization, object])
+  end
+
+  def edit_link object=nil
+    main_app.url_for([:edit, @product, @theme, @personalization, object])
+  end
+
+  def new_link object=nil
+    main_app.url_for([:new, @product, @theme, @personalization, object])
   end
 
   private

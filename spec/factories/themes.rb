@@ -2,16 +2,13 @@
 #
 # Table name: themes
 #
-#  id                   :integer          not null, primary key
-#  spree_product_id     :integer
-#  picture_file_name    :string
-#  picture_content_type :string
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  name                 :string
-#  default              :boolean
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id               :integer          not null, primary key
+#  spree_product_id :integer
+#  name             :string
+#  default          :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  picture          :string
 #
 
 FactoryGirl.define do

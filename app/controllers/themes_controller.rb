@@ -1,6 +1,7 @@
 class ThemesController < Spree::Admin::BaseController
   before_action :set_parents
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
+  helper_method [:show_link, :edit_link, :new_link]
 
   # GET /themes
   # GET /themes.json
@@ -60,6 +61,18 @@ class ThemesController < Spree::Admin::BaseController
       format.html { redirect_to main_app.url_for([@product, :themes]), notice: 'Theme was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def show_link object=nil
+    main_app.url_for([@product, @theme, object])
+  end
+
+  def edit_link object=nil
+    main_app.url_for([:edit, @product, @theme, object])
+  end
+
+  def new_link object=nil
+    main_app.url_for([:new, @product, @theme, object])
   end
 
   private

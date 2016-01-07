@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230022122) do
+ActiveRecord::Schema.define(version: 20160105200740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 20151230022122) do
     t.string   "area_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "x1"
+    t.integer  "y1"
+    t.integer  "x2"
+    t.integer  "y2"
   end
 
   add_index "area_editions", ["layout_id"], name: "index_area_editions_on_layout_id", using: :btree
@@ -66,14 +70,11 @@ ActiveRecord::Schema.define(version: 20151230022122) do
 
   create_table "personalizations", force: :cascade do |t|
     t.integer  "theme_id"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
     t.string   "name"
     t.integer  "order"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "picture"
   end
 
   add_index "personalizations", ["theme_id"], name: "index_personalizations_on_theme_id", using: :btree
@@ -1087,14 +1088,11 @@ ActiveRecord::Schema.define(version: 20151230022122) do
 
   create_table "themes", force: :cascade do |t|
     t.integer  "spree_product_id"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
     t.string   "name"
     t.boolean  "default"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "picture"
   end
 
   add_index "themes", ["spree_product_id"], name: "index_themes_on_spree_product_id", using: :btree
