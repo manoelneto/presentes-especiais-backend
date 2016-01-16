@@ -1,6 +1,6 @@
 class ProductService < Service
 
-  def self.find id, params={}
+  def self.find id, options={}
     resource_class.find_by slug: id
   end
 

@@ -6,7 +6,7 @@ class BaseController < Spree::Admin::BaseController
 
   # GET /api/new
   def new
-    set_resource(service_class.new_item(params))
+    set_resource(service_class.new_item({}, params))
   end
 
   # GET /api/new
@@ -16,7 +16,7 @@ class BaseController < Spree::Admin::BaseController
   # POST /api/{plural_resource_name}
   def create
     respond_to do |format|
-      if service_class.create(resource_params)
+      if service_class.create(resource_params, params)
         format.html { redirect_to after_create_url, notice: "#{resource_name} was successfully created." }
         format.json { render :show, status: :created, location: get_resource }
       else
@@ -28,7 +28,7 @@ class BaseController < Spree::Admin::BaseController
 
   # DELETE /api/{plural_resource_name}/1
   def destroy
-    service_class.destroy(params)
+    service_class.destroy(params['id'], options)
     respond_to do |format|
       format.html { redirect_to after_destroy_url, notice: "#{resource_name} was successfully destroyed." }
       format.json { head :no_content }
@@ -48,7 +48,7 @@ class BaseController < Spree::Admin::BaseController
   # PATCH/PUT /api/{plural_resource_name}/1
   def update
     respond_to do |format|
-      if service_class.update(params, resource_params)
+      if service_class.update(params['id'], resource_params, params)
         format.html { redirect_to after_update_url, notice: "#{resource_name} was successfully updated." }
         format.json { render :show, status: :ok, location: get_resource }
       else

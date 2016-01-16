@@ -20,7 +20,7 @@ set :keep_releases, 5
 set :linked_files, %w{config/application.yml}
 
 # dirs we want symlinking to shared
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 # set :sidekiq_options_per_process, ["--queue teste"]
 set :pty, false

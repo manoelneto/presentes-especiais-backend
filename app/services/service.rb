@@ -1,27 +1,27 @@
 class Service
 
-  def self.new_item params
-    resource_class.new
+  def self.new_item new_params={}, options={}
+    resource_class.new new_params
   end
 
-  def self.index params
+  def self.index options
     resource_class.all
   end
 
-  def self.find id, params={}
+  def self.find id, options={}
     resource_class.find id
   end
 
-  def self.destroy params
-    find(params['id'], params).destroy
+  def self.destroy id, options
+    find(id, options).destroy
   end
 
-  def self.create params
-    new_item(params).save
+  def self.create create_params, options={}
+    new_item(create_params, options).save
   end
 
-  def self.update params, update_params
-    find(params['id'], params).update(update_params)
+  def self.update id, update_params, options
+    find(id, options).update(update_params)
   end
 
   private
