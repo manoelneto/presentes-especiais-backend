@@ -3,7 +3,7 @@ class ThemeService < NestedService
   private
 
     def self.nested_field
-      "product"
+      "spree_product"
     end
 
     def self.nested_service_class
