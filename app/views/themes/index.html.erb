@@ -84,9 +84,9 @@ Plugin http://odyniec.net/projects/imgareaselect/
         <td><%= image_tag theme.picture.url(:small_thumb) %></td>
         <td><%= theme.default %></td>
         <td>
-          <%= link_to 'Show', show_link(theme) %>
-          <%= link_to 'Edit', edit_link(theme) %>
-          <%= link_to 'Destroy', show_link(theme), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Show', show_url(theme) %>
+          <%= link_to 'Edit', edit_url(theme) %>
+          <%= link_to 'Destroy', destroy_url(theme), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
@@ -95,4 +95,4 @@ Plugin http://odyniec.net/projects/imgareaselect/
 
 <br>
 
-<%= link_to 'New Theme', main_app.url_for([:new, @product, :theme]) %>
+<%= link_to 'New Theme', new_url(:theme) %>

@@ -6,3 +6,8 @@ attributes *theme_attributes
 #     attributes *taxon_attributes
 #   end
 # end
+
+child :personalizations => :personalizations do
+  extends "spree/api/personalizations/show"
+end
+

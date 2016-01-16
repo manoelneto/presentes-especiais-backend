@@ -2,7 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to main_app.url_for([@product, @theme]), class: 'btn btn-danger' do %>
+<%= link_to main_app.url_for([:new, @product, :theme]), class: 'btn btn-danger' do %>
   <span class="icon icon-delete"></span>
   Cancel
 <% end %>

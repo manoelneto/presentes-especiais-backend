@@ -16,9 +16,9 @@
       <tr>
         <td><%= personalization.name %></td>
         <td><%= image_tag personalization.picture.url(:thumb) %></td>
-        <td><%= link_to 'Show', main_app.url_for([@product, @theme, personalization]), class: 'btn btn-default' %></td>
-        <td><%= link_to 'Edit', main_app.url_for([:edit, @product, @theme, personalization]), class: 'btn btn-default' %></td>
-        <td><%= link_to 'Destroy', main_app.url_for([@product, @theme, personalization]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Show', main_app.url_for([@product, personalization]), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', main_app.url_for([:edit, @product, personalization]), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', main_app.url_for([@product, personalization]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,7 +26,7 @@
 
 <br>
 
-<%= link_to main_app.url_for([:new, @product, @theme, :personalization]), class: 'btn btn-primary' do %>
+<%= link_to main_app.url_for([:new, @product, :personalization]), class: 'btn btn-primary' do %>
   <i class="icon icon-plus"></i>
   Nova personalização
 <% end %>

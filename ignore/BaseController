@@ -1,0 +1,12 @@
+BaseController
+
+    index
+
+        Service.index()
+
+    getService
+
+        retorna o service baseado no nome da classe
+        igual a que ta no base
+
+ThemeController

@@ -1,4 +1,4 @@
-<%= simple_form_for(@theme, url: main_app.url_for([@product, @theme]),  html: { class: '' }) do |f| %>
+<%= simple_form_for(@theme, url: main_app.url_for(nested_resource + [@theme]),  html: { class: '' }) do |f| %>
   <fieldset>
     <legend>Tema</legend>
     <div class="row">
@@ -39,9 +39,9 @@
                 <%= image_tag personalization.picture.url(:small_thumb) %>
               </td>
               <td>
-                <%= link_to 'Show', show_link(personalization) %>
-                <%= link_to 'Edit', edit_link(personalization) %>
-                <%= link_to 'Destroy', show_link(personalization), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Show', show_url(personalization) %>
+                <%= link_to 'Edit', edit_url(personalization) %>
+                <%= link_to 'Destroy', destroy_url(personalization), method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
             <% end %>
@@ -55,7 +55,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <%= link_to new_link(:personalization), class: 'btn btn-primary' do %>
+          <%= link_to new_url(:personalization), class: 'btn btn-primary' do %>
             <i class="icon icon-plus"></i>
             Nova personalização
           <% end %>
