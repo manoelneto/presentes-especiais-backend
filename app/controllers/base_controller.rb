@@ -15,8 +15,9 @@ class BaseController < Spree::Admin::BaseController
 
   # POST /api/{plural_resource_name}
   def create
+    set_resource service_class.create(resource_params, params)
     respond_to do |format|
-      if service_class.create(resource_params, params)
+      if get_resource.errors.empty?
         format.html { redirect_to after_create_url, notice: "#{resource_name} was successfully created." }
         format.json { render :show, status: :created, location: get_resource }
       else
@@ -28,7 +29,7 @@ class BaseController < Spree::Admin::BaseController
 
   # DELETE /api/{plural_resource_name}/1
   def destroy
-    service_class.destroy(params['id'], options)
+    service_class.destroy(params['id'], params)
     respond_to do |format|
       format.html { redirect_to after_destroy_url, notice: "#{resource_name} was successfully destroyed." }
       format.json { head :no_content }
@@ -89,7 +90,7 @@ class BaseController < Spree::Admin::BaseController
     end
 
     def after_destroy_url
-      raise NotImplementedError
+      :back
     end
 
     # The service class based on the controller

@@ -17,7 +17,9 @@ class Service
   end
 
   def self.create create_params, options={}
-    new_item(create_params, options).save
+    item = new_item(create_params, options)
+    item.save
+    item
   end
 
   def self.update id, update_params, options

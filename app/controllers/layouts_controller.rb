@@ -5,6 +5,11 @@ class LayoutsController < NestedBaseController
     @layout.area_editions.build
   end
 
+  def new
+    super
+    @layout.area_editions.build
+  end
+
   private
 
     def nested_resource
