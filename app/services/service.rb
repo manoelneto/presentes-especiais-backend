@@ -1,5 +1,9 @@
 class Service
 
+  def initialize resource
+    @resource = resource
+  end
+
   def self.new_item new_params={}, options={}
     resource_class.new new_params
   end
@@ -28,6 +32,11 @@ class Service
 
   private
 
+    # get service by the name of the class
+    #
+    # example
+    # if you have ProductService < Service
+    # this will return Product (model)
     def self.resource_class
       self.resource_name.classify.constantize
     end
