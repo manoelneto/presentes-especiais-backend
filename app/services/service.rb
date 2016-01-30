@@ -8,7 +8,7 @@ class Service
     resource_class.new new_params
   end
 
-  def self.index options
+  def self.index options=nil
     resource_class.all
   end
 

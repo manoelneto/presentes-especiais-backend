@@ -4,6 +4,6 @@ Spree::Admin::ProductsController.class_eval do
   private
 
     def set_categories
-      @categories = Spree::Category.all
+      @categories = CategoryService.index
     end
 end
