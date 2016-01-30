@@ -10,10 +10,10 @@
 #  area_type  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  x1         :string
-#  y1         :string
-#  x2         :string
-#  y2         :string
+#  x1         :integer
+#  y1         :integer
+#  x2         :integer
+#  y2         :integer
 #
 
 require 'rails_helper'

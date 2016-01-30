@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :categories
+  end
+
   scope module: :spree do
     namespace :admin do
       resources :products do

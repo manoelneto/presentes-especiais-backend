@@ -1,0 +1,29 @@
+<%= form_for @category, url: main_app.url_for([:admin, @category]), :html => { :multipart => true } do |f| %>
+  <fieldset data-hook="new_category">
+    <%= f.field_container :name, :class => ['form-group'] do %>
+      <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+      <%= f.text_field :name, :class => 'form-control title' %>
+      <%= f.error_message_on :name %>
+    <% end %>
+
+    <%= f.field_container :picture, :class => ['form-group'] do %>
+      <%= f.label :picture, Spree.t(:picture) %> <span class="required">*</span>
+      <%= f.file_field :picture, :class => 'form-control title' %>
+      <%= f.error_message_on :picture %>
+    <% end %>
+
+    <%#= render :partial => 'spree/admin/shared/new_resource_links' %>
+
+    <div class="form-actions" data-hook="buttons">
+      <% if f.object.persisted? %>
+        <%= button Spree.t('actions.update'), 'refresh', 'submit', {class: 'btn-success'} %>
+      <% else %>
+        <%= button Spree.t('actions.create'), 'ok', 'submit', {class: 'btn-success'} %>
+      <% end %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t('actions.cancel'), main_app.url_for([:admin, :categories]), :icon => 'remove' %>
+    </div>
+
+
+  </fieldset>
+<% end %>

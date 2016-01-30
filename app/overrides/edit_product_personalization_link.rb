@@ -1,5 +1,5 @@
 Deface::Override.new(:virtual_path => 'spree/admin/shared/_product_tabs',
-  :name => 'test',
+  :name => 'edit_product_personalization_link',
   :insert_bottom => ".nav.nav-pills.nav-stacked",
   :text => '
     <%= content_tag :li, class: ("active" if current == :personalization) do %>
