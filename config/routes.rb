@@ -47,8 +47,8 @@ Rails.application.routes.draw do
     end
 
     namespace :api, format: 'json' do
-      resources :categories, only: [:index] do
-        resources :products, only: [:index]
+      resources :categories, only: [:index, :show] do
+        # resources :products, only: [:index]
       end
 
       namespace :v1 do
