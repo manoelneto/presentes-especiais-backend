@@ -1,8 +1,9 @@
-class BaseController < Spree::Admin::BaseController
+class ApiBaseController < Spree::Api::BaseController
 
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
-
   helper_method :show_url, :edit_url, :destroy_url, :new_url, :nested_resource
+
+  rescue_from GuestNotPermitted, with: :unauthorized
 
   # GET /api/new
   def new
@@ -19,7 +20,7 @@ class BaseController < Spree::Admin::BaseController
     respond_to do |format|
       if get_resource.errors.empty?
         format.html { redirect_to after_create_url, notice: "#{resource_name} was successfully created." }
-        format.json { render :show, status: :created, location: get_resource }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: get_resource.errors, status: :unprocessable_entity }
@@ -151,6 +152,13 @@ class BaseController < Spree::Admin::BaseController
     def set_resource(resource = nil)
       resource ||= service_class.find(params['id'], params)
       instance_variable_set("@#{resource_name}", resource)
+    end
+
+    # verify current_api_user for not being a guest
+    def verify_real_user!
+      if not current_api_user.persisted?
+        raise GuestNotPermitted
+      end
     end
 
 end

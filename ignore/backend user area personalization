@@ -1,0 +1,71 @@
+UserAreaPer
+
+    #  x1         :integer
+    #  y1         :integer
+    #  x2         :integer
+    #  y2         :integer
+    #  area_type  :string
+    #  image  :string
+    #  text  :string
+
+    belongs_to UserPerPer
+
+
+UserPerPer
+
+    # belongs_to personalization
+    personalization_picture    :string
+
+    belongs_to layout
+
+    belongs_to UserPer
+
+    has_many UserAreaPer
+
+UserPer
+
+    belongs_to theme
+
+    belongs_to order
+
+    has_many UserPerPer
+
+
+
+Terminou de personalizar o produto
+
+  se tiver logado
+    fluxo principal
+
+  Se não tiver logado
+    abre tela de login
+
+    fluxo principal
+
+  fluxo principal
+
+    salva a personalização
+
+      UserPersonalizationService.create params
+
+    adiciona ao carrinho
+
+      new CartItem
+
+        product_id
+
+        user_personalization_id
+
+
+Menu tem a listagem de itens no carrinho
+
+  CartItemService.in_cart_count
+    contagem de itens no carrinho
+
+  CartItemService.in_cart_list
+    listagem de itens no carrinho
+
+
+
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129093712) do
+ActiveRecord::Schema.define(version: 20160209113456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1098,6 +1098,63 @@ ActiveRecord::Schema.define(version: 20160129093712) do
 
   add_index "themes", ["spree_product_id"], name: "index_themes_on_spree_product_id", using: :btree
 
+  create_table "user_area_pers", force: :cascade do |t|
+    t.integer  "x1"
+    t.integer  "x2"
+    t.integer  "y1"
+    t.integer  "y2"
+    t.string   "area_type"
+    t.string   "image"
+    t.string   "text"
+    t.integer  "user_per_per_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "user_area_pers", ["user_per_per_id"], name: "index_user_area_pers_on_user_per_per_id", using: :btree
+
+  create_table "user_area_personalizations", force: :cascade do |t|
+    t.integer  "x1"
+    t.integer  "x2"
+    t.integer  "y1"
+    t.integer  "y2"
+    t.string   "area_type"
+    t.string   "image"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_per_pers", force: :cascade do |t|
+    t.string   "personalization_picture"
+    t.integer  "layout_id"
+    t.integer  "user_per_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "user_per_pers", ["layout_id"], name: "index_user_per_pers_on_layout_id", using: :btree
+  add_index "user_per_pers", ["user_per_id"], name: "index_user_per_pers_on_user_per_id", using: :btree
+
+  create_table "user_pers", force: :cascade do |t|
+    t.integer  "theme_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "spree_user_id"
+  end
+
+  add_index "user_pers", ["spree_user_id"], name: "index_user_pers_on_spree_user_id", using: :btree
+  add_index "user_pers", ["theme_id"], name: "index_user_pers_on_theme_id", using: :btree
+
+  create_table "user_personalization_personalizations", force: :cascade do |t|
+    t.string   "personalization_picture"
+    t.integer  "layout_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "user_personalization_personalizations", ["layout_id"], name: "index_user_personalization_personalizations_on_layout_id", using: :btree
+
   add_foreign_key "area_editions", "layouts"
   add_foreign_key "identities", "spree_users"
   add_foreign_key "layouts", "personalizations"
@@ -1108,4 +1165,10 @@ ActiveRecord::Schema.define(version: 20160129093712) do
   add_foreign_key "spree_products", "spree_categories"
   add_foreign_key "spree_themes", "spree_products"
   add_foreign_key "themes", "spree_products"
+  add_foreign_key "user_area_pers", "user_per_pers"
+  add_foreign_key "user_per_pers", "layouts"
+  add_foreign_key "user_per_pers", "user_pers"
+  add_foreign_key "user_pers", "spree_users"
+  add_foreign_key "user_pers", "themes"
+  add_foreign_key "user_personalization_personalizations", "layouts"
 end

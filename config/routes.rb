@@ -39,10 +39,16 @@ Rails.application.routes.draw do
     resources :categories
   end
 
+
+  namespace :api, format: 'json' do
+    resources :user_pers, only: [:index, :create] do
+
+    end
+  end
+
   scope module: :spree do
     namespace :admin do
       resources :products do
-
       end
     end
 

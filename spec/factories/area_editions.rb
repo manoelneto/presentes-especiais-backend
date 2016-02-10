@@ -19,10 +19,14 @@
 FactoryGirl.define do
   factory :area_edition do
     layout nil
-name "MyString"
-required false
-order 1
-area_type "MyString"
+    name "MyString"
+    required false
+    order 1
+    area_type "MyString"
+    x1 10
+    y1 10
+    x2 20
+    y2 20
   end
 
 end
