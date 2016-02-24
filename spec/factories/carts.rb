@@ -1,18 +1,16 @@
 # == Schema Information
 #
-# Table name: user_pers
+# Table name: carts
 #
 #  id            :integer          not null, primary key
-#  theme_id      :integer
+#  spree_user_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  spree_user_id :integer
 #
 
 FactoryGirl.define do
-  factory :user_per do
-    theme nil
-    spree_user
+  factory :cart do
+    spree_user nil
   end
 
 end

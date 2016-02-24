@@ -52,12 +52,12 @@ RSpec.describe PersonalizationsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new personalization as @personalization" do
-      get :new, {}, valid_session
-      expect(assigns(:personalization)).to be_a_new(Personalization)
-    end
-  end
+  # describe "GET #new" do
+  #   it "assigns a new personalization as @personalization" do
+  #     get :new, {}, valid_session
+  #     expect(assigns(:personalization)).to be_a_new(Personalization)
+  #   end
+  # end
 
   describe "GET #edit" do
     it "assigns the requested personalization as @personalization" do

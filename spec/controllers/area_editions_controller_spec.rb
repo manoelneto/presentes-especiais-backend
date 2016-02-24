@@ -52,12 +52,12 @@ RSpec.describe AreaEditionsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new area_edition as @area_edition" do
-      get :new, {}, valid_session
-      expect(assigns(:area_edition)).to be_a_new(AreaEdition)
-    end
-  end
+  # describe "GET #new" do
+  #   it "assigns a new area_edition as @area_edition" do
+  #     get :new, {}, valid_session
+  #     expect(assigns(:area_edition)).to be_a_new(AreaEdition)
+  #   end
+  # end
 
   describe "GET #edit" do
     it "assigns the requested area_edition as @area_edition" do

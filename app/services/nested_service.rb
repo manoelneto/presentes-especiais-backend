@@ -1,8 +1,8 @@
 class NestedService < Service
 
   def self.index options
-    nested_item = nested_item options
-    nested_item.send(resource_name_plural).all
+    the_nested_item = nested_item options
+    the_nested_item.send(resource_name_plural).all
   end
 
   def self.new_item new_params, options
@@ -10,8 +10,8 @@ class NestedService < Service
   end
 
   def self.find id, options={}
-    nested_item = nested_item options
-    nested_item.send(nested_resource_name_plural).find id
+    the_nested_item = nested_item options
+    the_nested_item.send(nested_resource_name_plural).find id
   end
 
   private
@@ -21,7 +21,8 @@ class NestedService < Service
     end
 
     def self.nested_item options
-      nested_service_class.find options["#{nested_resource_name.downcase}_id"], options
+      ap options
+      nested_service_class.find options[:params]["#{nested_resource_name.downcase}_id"], options
     end
 
     def self.nested_service_class

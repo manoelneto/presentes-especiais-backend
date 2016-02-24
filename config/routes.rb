@@ -40,9 +40,17 @@ Rails.application.routes.draw do
   end
 
 
-  namespace :api, format: 'json' do
+  namespace :api, :defaults => { :format => 'json' } do
     resources :user_pers, only: [:index, :create] do
+    end
 
+    resources :carts, only: [] do
+      collection do
+        get :user_cart
+      end
+    end
+
+    resources :cart_items, only: [:create, :destroy, :update], :defaults => { :format => 'json' } do
     end
   end
 

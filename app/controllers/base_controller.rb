@@ -6,7 +6,7 @@ class BaseController < Spree::Admin::BaseController
 
   # GET /api/new
   def new
-    set_resource(service_class.new_item({}, params))
+    set_resource(service_class.new_item({}, build_params))
   end
 
   # GET /api/new
@@ -15,7 +15,7 @@ class BaseController < Spree::Admin::BaseController
 
   # POST /api/{plural_resource_name}
   def create
-    set_resource service_class.create(resource_params, params)
+    set_resource service_class.create(resource_params, build_params)
     respond_to do |format|
       if get_resource.errors.empty?
         format.html { redirect_to after_create_url, notice: "#{resource_name} was successfully created." }
@@ -29,7 +29,7 @@ class BaseController < Spree::Admin::BaseController
 
   # DELETE /api/{plural_resource_name}/1
   def destroy
-    service_class.destroy(params['id'], params)
+    service_class.destroy(params['id'], build_params)
     respond_to do |format|
       format.html { redirect_to after_destroy_url, notice: "#{resource_name} was successfully destroyed." }
       format.json { head :no_content }
@@ -40,7 +40,7 @@ class BaseController < Spree::Admin::BaseController
   def index
     # ap current_user
     plural_resource_name = "@#{resource_name.pluralize}"
-    instance_variable_set(plural_resource_name, service_class.index(params))
+    instance_variable_set(plural_resource_name, service_class.index(build_params))
   end
 
   # GET /api/{plural_resource_name}/1
@@ -50,7 +50,7 @@ class BaseController < Spree::Admin::BaseController
   # PATCH/PUT /api/{plural_resource_name}/1
   def update
     respond_to do |format|
-      if service_class.update(params['id'], resource_params, params)
+      if service_class.update(params['id'], resource_params, build_params)
         format.html { redirect_to after_update_url, notice: "#{resource_name} was successfully updated." }
         format.json { render :show, status: :ok, location: get_resource }
       else
@@ -98,6 +98,11 @@ class BaseController < Spree::Admin::BaseController
     # @return [Class]
     def service_class
       @service_class ||= "#{service_name}".classify.constantize
+    end
+
+    # options for service
+    def build_params
+      {params: params}
     end
 
     # The singular name for the service class based on the controller
@@ -149,7 +154,7 @@ class BaseController < Spree::Admin::BaseController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_resource(resource = nil)
-      resource ||= service_class.find(params['id'], params)
+      resource ||= service_class.find(params['id'], build_params)
       instance_variable_set("@#{resource_name}", resource)
     end
 

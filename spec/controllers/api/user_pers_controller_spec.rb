@@ -81,7 +81,7 @@ RSpec.describe Api::UserPersController, type: :controller do
 
     context "with user_per from same user" do
       it "assigns all user_pers as @user_pers" do
-        user_per = UserPerService.create valid_attributes
+        user_per = UserPerService.create(valid_attributes, user: user)
         get :index, {}, valid_session
         expect(assigns(:user_pers)).to eq([user_per])
         # sap JSON.parse response.body
@@ -90,7 +90,7 @@ RSpec.describe Api::UserPersController, type: :controller do
 
     context "with user_per from other user" do
       it "assigns all user_pers as @user_pers" do
-        user_per = UserPerService.create valid_attributes.merge(spree_user_id: other_user.id)
+        user_per = UserPerService.create(valid_attributes, user: other_user)
         get :index, {}, valid_session
         expect(assigns(:user_pers)).to eq([])
       end

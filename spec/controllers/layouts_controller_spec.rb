@@ -52,12 +52,12 @@ RSpec.describe LayoutsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new layout as @layout" do
-      get :new, {}, valid_session
-      expect(assigns(:layout)).to be_a_new(Layout)
-    end
-  end
+  # describe "GET #new" do
+  #   it "assigns a new layout as @layout" do
+  #     get :new, {}, valid_session
+  #     expect(assigns(:layout)).to be_a_new(Layout)
+  #   end
+  # end
 
   describe "GET #edit" do
     it "assigns the requested layout as @layout" do

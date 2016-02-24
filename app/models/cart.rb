@@ -1,18 +1,14 @@
 # == Schema Information
 #
-# Table name: user_pers
+# Table name: carts
 #
 #  id            :integer          not null, primary key
-#  theme_id      :integer
+#  spree_user_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  spree_user_id :integer
 #
 
-FactoryGirl.define do
-  factory :user_per do
-    theme nil
-    spree_user
-  end
-
+class Cart < ActiveRecord::Base
+  belongs_to :spree_user, class_name: 'Spree::User'
+  has_many :cart_items, inverse_of: :cart
 end

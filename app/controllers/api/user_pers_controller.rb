@@ -5,9 +5,8 @@ module Api
     helper :user_area_pers
     before_filter :verify_real_user!
 
-    def index
-      plural_resource_name = "@#{resource_name.pluralize}"
-      instance_variable_set(plural_resource_name, service_class.index(params.merge(user: current_api_user)))
+    def build_params
+      super.merge(user: current_api_user)
     end
 
     private
@@ -29,8 +28,6 @@ module Api
             ]
           ]
         ])
-
-        the_params.merge! spree_user_id: current_api_user.id
 
         the_params
       end

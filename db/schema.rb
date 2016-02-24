@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209113456) do
+ActiveRecord::Schema.define(version: 20160222121415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,28 @@ ActiveRecord::Schema.define(version: 20160209113456) do
   end
 
   add_index "area_editions", ["layout_id"], name: "index_area_editions_on_layout_id", using: :btree
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "user_per_id"
+    t.integer  "spree_product_id"
+    t.integer  "quantity"
+    t.integer  "price"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cart_id"
+  end
+
+  add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  add_index "cart_items", ["spree_product_id"], name: "index_cart_items_on_spree_product_id", using: :btree
+  add_index "cart_items", ["user_per_id"], name: "index_cart_items_on_user_per_id", using: :btree
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "spree_user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "carts", ["spree_user_id"], name: "index_carts_on_spree_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -1156,6 +1178,10 @@ ActiveRecord::Schema.define(version: 20160209113456) do
   add_index "user_personalization_personalizations", ["layout_id"], name: "index_user_personalization_personalizations_on_layout_id", using: :btree
 
   add_foreign_key "area_editions", "layouts"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "spree_products"
+  add_foreign_key "cart_items", "user_pers"
+  add_foreign_key "carts", "spree_users"
   add_foreign_key "identities", "spree_users"
   add_foreign_key "layouts", "personalizations"
   add_foreign_key "personalizations", "themes"

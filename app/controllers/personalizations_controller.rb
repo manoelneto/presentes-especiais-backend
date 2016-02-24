@@ -7,8 +7,8 @@ class PersonalizationsController < NestedBaseController
     end
 
     def set_nesteds
-      @product = ProductService.find(params[:product_id], params)
-      @theme = ThemeService.find(params[:theme_id], params)
+      @product = ProductService.find(params[:product_id], {params: params})
+      @theme = ThemeService.find(params[:theme_id], {params: params})
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -8,6 +8,7 @@ class UserPerService < Service
       personalization = Personalization.find attribute[:personalization_id]
       attribute[:personalization_picture] = personalization.picture.file
     end
+    create_params[:spree_user] = options[:user]
     object = super create_params, options
   end
 
