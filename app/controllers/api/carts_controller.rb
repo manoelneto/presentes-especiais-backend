@@ -1,6 +1,11 @@
 module Api
   class CartsController < ApiBaseController
     helper :carts
+    helper :themes
+    helper :personalizations
+    helper :layouts
+    helper :area_editions
+    helper :cart_items
     before_filter :verify_real_user!
 
     def user_cart

@@ -51,7 +51,12 @@ Rails.application.routes.draw do
     end
 
     resources :cart_items, only: [:create, :destroy, :update], :defaults => { :format => 'json' } do
+      collection do
+        get :count
+      end
     end
+
+    match "cart_items/:id" => "cart_items#create", via: [:options]
   end
 
   scope module: :spree do

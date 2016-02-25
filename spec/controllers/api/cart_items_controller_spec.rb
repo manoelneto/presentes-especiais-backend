@@ -73,6 +73,28 @@ RSpec.describe Api::CartItemsController, type: :controller do
     request.headers['X-Spree-Token'] = user_token
   end
 
+  describe "GET #count" do
+    subject { get :count, {format: :json}, valid_session }
+
+    context "with items cart" do
+      it "assigns count to @count" do
+        subject
+        expect(assigns(:count)).to be_eql(1)
+      end
+    end
+
+    context "with user that hasn`t items cart" do
+      before do
+        request.headers['X-Spree-Token'] = other_user_token
+      end
+
+      it "assigns count to @count" do
+        subject
+        expect(assigns(:count)).to be_eql(0)
+      end
+    end
+  end
+
   describe "POST #create" do
     context "with valid params" do
       it "creates a new CartItem" do
